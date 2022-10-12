@@ -1,0 +1,17 @@
+[
+  {
+    "nombre": "Burger House  ",
+    "precio": 340,
+    "id": 1
+  },
+  {
+    "nombre": "Crispy Onion  ",
+    "precio": 360,
+    "id": 2
+  },
+  {
+    "nombre": "Doble Smash   ",
+    "precio": 300,
+    "id": 3
+  }
+]
