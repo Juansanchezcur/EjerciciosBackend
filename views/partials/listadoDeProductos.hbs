@@ -1,0 +1,25 @@
+{{#if productos.length}}
+  <table class="table justify-content-center">
+
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {{#each productos}}
+        <tr scope="row">
+          <td>{{this.name}}</td>
+          <td>{{this.price}}</td>
+          <td><img class="imagen" src="{{this.thumbnail}}" /></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>Todavía no Hay productos añadidos</p>
+
+{{/if}}
