@@ -1,11 +1,68 @@
+/* General */
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0;
 }
+/* Productos */
 .table {
-  width: 50%;
+  width: 70%;
+  margin-top: 100px;
+  margin-bottom: 200px;
 }
+
+.table tr th {
+  font-size: 20px;
+  border-right: 1px solid;
+  width: 100px;
+  height: 30px;
+  padding: 0;
+  padding-left: 10px;
+  font-weight: bolder;
+}
+.table tr td {
+  font-size: 16px;
+  border-right: 1px solid;
+  width: 100px;
+  height: 50px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
 .imagen {
-  width: 200px;
+  width: 100%;
+}
+#listado {
+  border: 3px solid;
+}
+/* CHAT */
+.chat {
+  border: 3px solid;
+  margin-top: 100px;
+  margin-bottom: 200px;
+}
+.chat p {
+  border-bottom: 1px solid;
+  margin-bottom: 0px;
+}
+
+span {
+  margin: 0 10px;
+}
+.usuario {
+  font-weight: bold;
+  color: blue;
+  font-size: 20px;
+}
+
+.fecha {
+  color: brown;
+}
+
+.mensaje {
+  font-style: italic;
+  color: green;
+  font-size: 16px;
+  font-weight: 600;
 }
