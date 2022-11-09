@@ -133,4 +133,5 @@ rutaProductos.delete("/:id", async (req, res) => {
     error: `Ruta: http://localhost:8080/api/productos/id Metodo: Delete no autorizada`,
   });
 });
+
 module.exports = rutaProductos;

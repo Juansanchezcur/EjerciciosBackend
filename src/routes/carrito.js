@@ -7,7 +7,27 @@ const { v4: uuidv4 } = require("uuid");
 
 const fileName = "./carrito.json";
 
-rutaCarrito.get("/:id", async (req, res) => {
+rutaCarrito.post("/", async (req, res) => {
+  const carritos = await JSON.parse(await fs.promises.readFile(fileName));
+
+  const nuevoCarrito = {
+    id: uuidv4(),
+    timestamp: moment().format("MMMM Do YYYY, h:mm:ss a"),
+    productos: [],
+  };
+
+  carritos.push(nuevoCarrito);
+
+  const carritosString = JSON.stringify(carritos, null, "\t");
+  await fs.promises.writeFile(fileName, carritosString);
+
+  res.json({
+    msg: "Carrito guardado con Éxito",
+    producto: nuevoCarrito,
+  });
+});
+
+rutaCarrito.get("/:id/productos", async (req, res) => {
   const id = req.params.id;
   const carritos = await JSON.parse(await fs.promises.readFile(fileName));
   const indice = carritos.findIndex((unCarrito) => unCarrito.id == id);
@@ -18,14 +38,15 @@ rutaCarrito.get("/:id", async (req, res) => {
     });
   }
 
-  if (!carritos[indice].productos) {
+  if ((carritos[indice].productos = [])) {
     res.json({
       msg: `El carrito con id:${id} todavía no tiene productos`,
     });
+
+    res.json({
+      productos: carritos[indice].productos,
+    });
   }
-  res.json({
-    productos: carritos[indice].productos,
-  });
 });
 
 rutaCarrito.post("/:id_carrito/productos/:id_prod", async (req, res) => {
@@ -34,7 +55,7 @@ rutaCarrito.post("/:id_carrito/productos/:id_prod", async (req, res) => {
 
   if (!quantity || quantity < 1) {
     return res.status(400).json({
-      msg: "Por favor, ingresa una cantidad válida ",
+      msg: "Por favor, ingresa una cantidad mayor a 0 ",
     });
   }
   //Traigo los datos de los archivos
@@ -61,8 +82,12 @@ rutaCarrito.post("/:id_carrito/productos/:id_prod", async (req, res) => {
       msg: "error, producto no encontrado",
     });
   }
-  //Agrego el producto al carrito
-  carritos[indiceCarrito].productos = [];
+  if (quantity > productos[indiceProducto].stock) {
+    return res.status(400).json({
+      msg: "La cantidad elegida no es correcta, elija por favor un número entre 1 y el stock máximo",
+      stock: productos[indiceProducto].stock,
+    });
+  }
 
   const nuevoProducto = {
     id: productos[indiceProducto].id,
@@ -74,12 +99,9 @@ rutaCarrito.post("/:id_carrito/productos/:id_prod", async (req, res) => {
     price: productos[indiceProducto].price,
   };
 
-  productos[indiceProducto].stock -= quantity;
   carritos[indiceCarrito].productos.push(nuevoProducto);
 
-  //Guardo el carrito con el producto y actualizo el stock del producto en los archivos
-  const productosString = JSON.stringify(productos, null, "\t");
-  await fs.promises.writeFile(fileName, productosString);
+  //Guardo el carrito con el producto
 
   const carritosString = JSON.stringify(carritos, null, "\t");
   await fs.promises.writeFile(fileName, carritosString);
@@ -102,7 +124,7 @@ rutaCarrito.delete("/:id", async (req, res) => {
   await fs.promises.writeFile(fileName, carritosString);
 
   res.json({
-    msg: `Borrando Carrito con id: ${id_carrito}`,
+    msg: `Borrando Carrito con id: ${id}`,
   });
 });
 
@@ -110,25 +132,27 @@ rutaCarrito.delete("/:id_carrito/productos/:id_prod", async (req, res) => {
   const { id_carrito, id_prod } = req.params;
 
   const carritos = await JSON.parse(await fs.promises.readFile(fileName));
-  const indiceCarrito = carritos.filter(
+  const carritoElegido = carritos.find(
     (unCarrito) => unCarrito.id == id_carrito
   );
-  if (indiceCarrito < 0) {
+  if (carritoElegido == undefined) {
     return res.status(404).json({
       msg: "error, carrito no encontrado",
     });
   }
-
-  const indiceProducto = carritos[indiceCarrito].filter(
+  console.log(carritoElegido);
+  const productoElegido = carritoElegido.productos.find(
     (unProducto) => unProducto.id == id_prod
   );
-  if (indiceProducto < 0) {
+
+  console.log(productoElegido);
+  if (productoElegido == undefined) {
     return res.status(404).json({
       msg: "error, producto no encontrado",
     });
   }
 
-  carritos[indiceCarrito].splice(indiceProducto, 1);
+  carritoElegido.productos.splice(productoElegido, 1);
 
   const carritosString = JSON.stringify(carritos, null, "\t");
   await fs.promises.writeFile(fileName, carritosString);
