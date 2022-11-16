@@ -30,7 +30,8 @@ form.addEventListener("submit", (ev) => {
 
 //Crea lista de Productos luego de que los recibe
 
-socket.on("dataNueva", (data) => {
+socket.on("dataNueva", (productos) => {
+  console.log(productos);
   listado.innerHTML = `<tr>
 
   <th>Name</th>
@@ -40,7 +41,7 @@ socket.on("dataNueva", (data) => {
   <th>Image</th>
 
 </tr>`;
-  data.productos.map((producto) => {
+  productos.map((producto) => {
     let row = document.createElement("tr");
     row.innerHTML = ` 
   <tr>
@@ -75,7 +76,7 @@ socket.on("listadoDeMensajes", (mensajes) => {
   chat.classList.add("chat");
   mensajes.map((mensaje) => {
     let parrafo = document.createElement("p");
-    parrafo.innerHTML = `<span class="usuario">${mensaje.user}: </span>     <span class="fecha"> ${mensaje.date} : </span>    <span class="mensaje">  ${mensaje.message}  </span> `;
+    parrafo.innerHTML = `<span class="usuario">${mensaje.user}: </span>     <span class="fecha"> ${mensaje.timestamp} : </span>    <span class="mensaje">  ${mensaje.message}  </span> `;
     chat.appendChild(parrafo);
   });
 });

@@ -1,9 +1,10 @@
 const express = require("express");
 const { engine } = require("express-handlebars");
-
 const fs = require("fs");
 const nombreArchivo = "src/mensajes.json";
 const path = require("path");
+
+const knex = require("knex");
 
 const app = express();
 const http = require("http");
@@ -42,6 +43,67 @@ app.engine(
   })
 );
 
+//Database Productos
+const db = require("../../db.js");
+
+const listarProductos = async () => {
+  const productos = await db("products").select("*");
+  return productos;
+};
+
+const listarProducto = async (id) => {
+  const productos = await db("products").where("id", id).select("*");
+  return productos;
+};
+
+const crearProducto = async (producto) => {
+  return await db("products").insert(producto);
+};
+
+const actualizarProducto = (id, productoActualizado) => {
+  return db("products").where("id", id).update(productoActualizado);
+};
+
+const borrarProducto = (id) => {
+  return db("products").where("id", id).del();
+};
+
+const list = async () => {
+  try {
+    const getAll = await listarProductos();
+    return getAll;
+  } catch (error) {
+    return error;
+  }
+};
+
+const single = async () => {
+  try {
+    const producto = await listarProductos();
+    console.log(producto);
+    return producto;
+  } catch (error) {
+    return error;
+  }
+};
+
+const created = async (producto) => {
+  try {
+    const prod = await crearProducto(producto);
+    console.log(prod);
+    return prod;
+  } catch (error) {
+    return error;
+  }
+};
+
+//Database Mensajes
+const insert = require("../../insert.js");
+
+const getData = require("../../getAll.js");
+getData.getAllMsgs().then((data) => {
+  console.log(data);
+});
 //WEBSOCKETS
 
 myWSServer.on("connection", (socket) => {
@@ -49,10 +111,6 @@ myWSServer.on("connection", (socket) => {
   console.log("ID SOCKET SERVER", socket.id);
   console.log("ID SOCKET CLIENTE", socket.client.id);
 });
-
-const data = {
-  productos: [],
-};
 
 //Nuevas conexiones
 myWSServer.on("connection", async (socket) => {
@@ -62,39 +120,39 @@ myWSServer.on("connection", async (socket) => {
   //Envíos al nuevo usuario
 
   //Lista de Productos
-  socket.emit("dataNueva", data);
+  list().then((data) => {
+    socket.emit("dataNueva", data);
+  });
 
   //Lista de Mensajes
-  const mensajesNuevoUsuario = await JSON.parse(
-    await fs.promises.readFile(nombreArchivo, "utf-8")
-  );
-  socket.emit("listadoDeMensajes", mensajesNuevoUsuario);
+
+  getData.getAllMsgs().then((data) => {
+    socket.emit("listadoDeMensajes", data);
+  });
 
   //Nuevo producto
   socket.on("producto", (nuevoProducto) => {
-    data.productos.push(nuevoProducto);
-    console.log(data.productos);
-
-    myWSServer.emit("dataNueva", data);
+    console.log("Nuevo producto a agregar: ", nuevoProducto);
+    created(nuevoProducto);
+    list().then((data) => {
+      myWSServer.emit("dataNueva", data);
+    });
   });
 
   //Mensajes del lado del ciente
   socket.on("mensaje", async (mensaje) => {
-    const mensajes = await JSON.parse(
-      await fs.promises.readFile(nombreArchivo, "utf-8")
-    );
-    console.log(mensajes);
-    mensaje.date = moment().format("MMMM Do YYYY, h:mm:ss a");
-    mensajes.push(mensaje);
-    console.log(mensajes);
-    const stringDatos = JSON.stringify(mensajes, null, "\t");
-    await fs.promises.writeFile(nombreArchivo, stringDatos);
-    myWSServer.emit("listadoDeMensajes", mensajes);
+    mensaje.timestamp = moment().format("MMMM Do YYYY, h:mm:ss a");
+    await insert.insertMessageInTable(mensaje);
+    getData.getAllMsgs().then((data) => {
+      myWSServer.emit("listadoDeMensajes", data);
+    });
   });
 });
 
 app.get("/", (req, res) => {
-  res.render("main", data);
+  list().then((data) => {
+    res.render("main", data);
+  });
 });
 
 module.exports = myServer;
