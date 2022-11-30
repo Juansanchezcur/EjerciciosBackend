@@ -1,6 +1,5 @@
-const { Router, query } = require("express");
+const { Router } = require("express");
 const productModel = require("../models/products");
-const fileName = "./productos.json";
 const { v4: uuidv4 } = require("uuid");
 
 const rutaProductos = Router();
