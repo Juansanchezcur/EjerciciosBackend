@@ -1,5 +1,6 @@
 "use strict";
 
+require("dotenv/config");
 var express = require("express");
 var RouterPrincipal = require("../routes/index");
 var app = express();

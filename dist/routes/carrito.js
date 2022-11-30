@@ -12,41 +12,35 @@ var fs = require("fs");
 var _require2 = require("uuid"),
   uuidv4 = _require2.v4;
 var fileName = "./carrito.json";
-rutaCarrito.get("/:id", /*#__PURE__*/function () {
+rutaCarrito.post("/", /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
-    var id, carritos, indice;
+    var carritos, nuevoCarrito, carritosString;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            id = req.params.id;
             _context.t0 = JSON;
-            _context.next = 4;
+            _context.next = 3;
             return fs.promises.readFile(fileName);
-          case 4:
+          case 3:
             _context.t1 = _context.sent;
-            _context.next = 7;
+            _context.next = 6;
             return _context.t0.parse.call(_context.t0, _context.t1);
-          case 7:
+          case 6:
             carritos = _context.sent;
-            indice = carritos.findIndex(function (unCarrito) {
-              return unCarrito.id == id;
-            });
-            if (!(indice < 0)) {
-              _context.next = 11;
-              break;
-            }
-            return _context.abrupt("return", res.status(404).json({
-              msg: "error, carrito no encontrado"
-            }));
-          case 11:
-            if (!carritos[indice].productos) {
-              res.json({
-                msg: "El carrito con id:".concat(id, " todav\xEDa no tiene productos")
-              });
-            }
+            nuevoCarrito = {
+              id: uuidv4(),
+              timestamp: moment().format("MMMM Do YYYY, h:mm:ss a"),
+              productos: []
+            };
+            carritos.push(nuevoCarrito);
+            carritosString = JSON.stringify(carritos, null, "\t");
+            _context.next = 12;
+            return fs.promises.writeFile(fileName, carritosString);
+          case 12:
             res.json({
-              productos: carritos[indice].productos
+              msg: "Carrito guardado con Éxito",
+              producto: nuevoCarrito
             });
           case 13:
           case "end":
@@ -59,92 +53,43 @@ rutaCarrito.get("/:id", /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }());
-rutaCarrito.post("/:id_carrito/productos/:id_prod", /*#__PURE__*/function () {
+rutaCarrito.get("/:id/productos", /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(req, res) {
-    var _req$params, id_carrito, id_prod, quantity, carritos, productos, indiceCarrito, indiceProducto, nuevoProducto, productosString, carritosString;
+    var id, carritos, indice;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _req$params = req.params, id_carrito = _req$params.id_carrito, id_prod = _req$params.id_prod;
-            quantity = req.body.quantity;
-            if (!(!quantity || quantity < 1)) {
-              _context2.next = 4;
-              break;
-            }
-            return _context2.abrupt("return", res.status(400).json({
-              msg: "Por favor, ingresa una cantidad válida "
-            }));
-          case 4:
+            id = req.params.id;
             _context2.t0 = JSON;
-            _context2.next = 7;
+            _context2.next = 4;
             return fs.promises.readFile(fileName);
-          case 7:
+          case 4:
             _context2.t1 = _context2.sent;
-            _context2.next = 10;
+            _context2.next = 7;
             return _context2.t0.parse.call(_context2.t0, _context2.t1);
-          case 10:
+          case 7:
             carritos = _context2.sent;
-            _context2.t2 = JSON;
-            _context2.next = 14;
-            return fs.promises.readFile("./productos.json");
-          case 14:
-            _context2.t3 = _context2.sent;
-            _context2.next = 17;
-            return _context2.t2.parse.call(_context2.t2, _context2.t3);
-          case 17:
-            productos = _context2.sent;
-            //Saco los índices del producto y el carrito seleccionados
-            indiceCarrito = carritos.findIndex(function (unCarrito) {
-              return unCarrito.id == id_carrito;
+            indice = carritos.findIndex(function (unCarrito) {
+              return unCarrito.id == id;
             });
-            if (!(indiceCarrito < 0)) {
-              _context2.next = 21;
+            if (!(indice < 0)) {
+              _context2.next = 11;
               break;
             }
             return _context2.abrupt("return", res.status(404).json({
               msg: "error, carrito no encontrado"
             }));
-          case 21:
-            indiceProducto = productos.findIndex(function (unProducto) {
-              return unProducto.id == id_prod;
-            });
-            if (!(indiceProducto < 0)) {
-              _context2.next = 24;
-              break;
+          case 11:
+            if (carritos[indice].productos = []) {
+              res.json({
+                msg: "El carrito con id:".concat(id, " todav\xEDa no tiene productos")
+              });
+              res.json({
+                productos: carritos[indice].productos
+              });
             }
-            return _context2.abrupt("return", res.status(404).json({
-              msg: "error, producto no encontrado"
-            }));
-          case 24:
-            //Agrego el producto al carrito
-            carritos[indiceCarrito].productos = [];
-            nuevoProducto = {
-              id: productos[indiceProducto].id,
-              quantity: quantity,
-              timestamp: productos[indiceProducto].timestamp,
-              description: productos[indiceProducto].description,
-              code: productos[indiceProducto].code,
-              photo: productos[indiceProducto].photo,
-              price: productos[indiceProducto].price
-            };
-            productos[indiceProducto].stock -= quantity;
-            carritos[indiceCarrito].productos.push(nuevoProducto);
-
-            //Guardo el carrito con el producto y actualizo el stock del producto en los archivos
-            productosString = JSON.stringify(productos, null, "\t");
-            _context2.next = 31;
-            return fs.promises.writeFile(fileName, productosString);
-          case 31:
-            carritosString = JSON.stringify(carritos, null, "\t");
-            _context2.next = 34;
-            return fs.promises.writeFile(fileName, carritosString);
-          case 34:
-            res.json({
-              msg: "Producto guardado con Éxito",
-              producto: nuevoProducto
-            });
-          case 35:
+          case 12:
           case "end":
             return _context2.stop();
         }
@@ -155,35 +100,94 @@ rutaCarrito.post("/:id_carrito/productos/:id_prod", /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }());
-rutaCarrito["delete"]("/:id", /*#__PURE__*/function () {
+rutaCarrito.post("/:id_carrito/productos/:id_prod", /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
-    var id, carritos, indice, carritosString;
+    var _req$params, id_carrito, id_prod, quantity, carritos, productos, indiceCarrito, indiceProducto, nuevoProducto, carritosString;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            id = req.params.id;
-            _context3.t0 = JSON;
-            _context3.next = 4;
-            return fs.promises.readFile(fileName);
+            _req$params = req.params, id_carrito = _req$params.id_carrito, id_prod = _req$params.id_prod;
+            quantity = req.body.quantity;
+            if (!(!quantity || quantity < 1)) {
+              _context3.next = 4;
+              break;
+            }
+            return _context3.abrupt("return", res.status(400).json({
+              msg: "Por favor, ingresa una cantidad mayor a 0 "
+            }));
           case 4:
-            _context3.t1 = _context3.sent;
+            _context3.t0 = JSON;
             _context3.next = 7;
-            return _context3.t0.parse.call(_context3.t0, _context3.t1);
+            return fs.promises.readFile(fileName);
           case 7:
+            _context3.t1 = _context3.sent;
+            _context3.next = 10;
+            return _context3.t0.parse.call(_context3.t0, _context3.t1);
+          case 10:
             carritos = _context3.sent;
-            indice = carritos.filter(function (unCarrito) {
-              return unCarrito.id == id;
-            });
-            carritos.splice(indice, 1);
-            carritosString = JSON.stringify(carritos, null, "\t");
-            _context3.next = 13;
-            return fs.promises.writeFile(fileName, carritosString);
-          case 13:
-            res.json({
-              msg: "Borrando Carrito con id: ".concat(id_carrito)
-            });
+            _context3.t2 = JSON;
+            _context3.next = 14;
+            return fs.promises.readFile("./productos.json");
           case 14:
+            _context3.t3 = _context3.sent;
+            _context3.next = 17;
+            return _context3.t2.parse.call(_context3.t2, _context3.t3);
+          case 17:
+            productos = _context3.sent;
+            //Saco los índices del producto y el carrito seleccionados
+            indiceCarrito = carritos.findIndex(function (unCarrito) {
+              return unCarrito.id == id_carrito;
+            });
+            if (!(indiceCarrito < 0)) {
+              _context3.next = 21;
+              break;
+            }
+            return _context3.abrupt("return", res.status(404).json({
+              msg: "error, carrito no encontrado"
+            }));
+          case 21:
+            indiceProducto = productos.findIndex(function (unProducto) {
+              return unProducto.id == id_prod;
+            });
+            if (!(indiceProducto < 0)) {
+              _context3.next = 24;
+              break;
+            }
+            return _context3.abrupt("return", res.status(404).json({
+              msg: "error, producto no encontrado"
+            }));
+          case 24:
+            if (!(quantity > productos[indiceProducto].stock)) {
+              _context3.next = 26;
+              break;
+            }
+            return _context3.abrupt("return", res.status(400).json({
+              msg: "La cantidad elegida no es correcta, elija por favor un número entre 1 y el stock máximo",
+              stock: productos[indiceProducto].stock
+            }));
+          case 26:
+            nuevoProducto = {
+              id: productos[indiceProducto].id,
+              quantity: quantity,
+              timestamp: productos[indiceProducto].timestamp,
+              description: productos[indiceProducto].description,
+              code: productos[indiceProducto].code,
+              photo: productos[indiceProducto].photo,
+              price: productos[indiceProducto].price
+            };
+            carritos[indiceCarrito].productos.push(nuevoProducto);
+
+            //Guardo el carrito con el producto
+            carritosString = JSON.stringify(carritos, null, "\t");
+            _context3.next = 31;
+            return fs.promises.writeFile(fileName, carritosString);
+          case 31:
+            res.json({
+              msg: "Producto guardado con Éxito",
+              producto: nuevoProducto
+            });
+          case 32:
           case "end":
             return _context3.stop();
         }
@@ -194,14 +198,14 @@ rutaCarrito["delete"]("/:id", /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }());
-rutaCarrito["delete"]("/:id_carrito/productos/:id_prod", /*#__PURE__*/function () {
+rutaCarrito["delete"]("/:id", /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
-    var _req$params2, id_carrito, id_prod, carritos, indiceCarrito, indiceProducto, carritosString;
+    var id, carritos, indice, carritosString;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            _req$params2 = req.params, id_carrito = _req$params2.id_carrito, id_prod = _req$params2.id_prod;
+            id = req.params.id;
             _context4.t0 = JSON;
             _context4.next = 4;
             return fs.promises.readFile(fileName);
@@ -211,37 +215,18 @@ rutaCarrito["delete"]("/:id_carrito/productos/:id_prod", /*#__PURE__*/function (
             return _context4.t0.parse.call(_context4.t0, _context4.t1);
           case 7:
             carritos = _context4.sent;
-            indiceCarrito = carritos.filter(function (unCarrito) {
-              return unCarrito.id == id_carrito;
+            indice = carritos.filter(function (unCarrito) {
+              return unCarrito.id == id;
             });
-            if (!(indiceCarrito < 0)) {
-              _context4.next = 11;
-              break;
-            }
-            return _context4.abrupt("return", res.status(404).json({
-              msg: "error, carrito no encontrado"
-            }));
-          case 11:
-            indiceProducto = carritos[indiceCarrito].filter(function (unProducto) {
-              return unProducto.id == id_prod;
-            });
-            if (!(indiceProducto < 0)) {
-              _context4.next = 14;
-              break;
-            }
-            return _context4.abrupt("return", res.status(404).json({
-              msg: "error, producto no encontrado"
-            }));
-          case 14:
-            carritos[indiceCarrito].splice(indiceProducto, 1);
+            carritos.splice(indice, 1);
             carritosString = JSON.stringify(carritos, null, "\t");
-            _context4.next = 18;
+            _context4.next = 13;
             return fs.promises.writeFile(fileName, carritosString);
-          case 18:
+          case 13:
             res.json({
-              msg: "Borrando producto ".concat(id_prod, " del carrito ").concat(id_carrito)
+              msg: "Borrando Carrito con id: ".concat(id)
             });
-          case 19:
+          case 14:
           case "end":
             return _context4.stop();
         }
@@ -250,6 +235,66 @@ rutaCarrito["delete"]("/:id_carrito/productos/:id_prod", /*#__PURE__*/function (
   }));
   return function (_x7, _x8) {
     return _ref4.apply(this, arguments);
+  };
+}());
+rutaCarrito["delete"]("/:id_carrito/productos/:id_prod", /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(req, res) {
+    var _req$params2, id_carrito, id_prod, carritos, carritoElegido, productoElegido, carritosString;
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _req$params2 = req.params, id_carrito = _req$params2.id_carrito, id_prod = _req$params2.id_prod;
+            _context5.t0 = JSON;
+            _context5.next = 4;
+            return fs.promises.readFile(fileName);
+          case 4:
+            _context5.t1 = _context5.sent;
+            _context5.next = 7;
+            return _context5.t0.parse.call(_context5.t0, _context5.t1);
+          case 7:
+            carritos = _context5.sent;
+            carritoElegido = carritos.find(function (unCarrito) {
+              return unCarrito.id == id_carrito;
+            });
+            if (!(carritoElegido == undefined)) {
+              _context5.next = 11;
+              break;
+            }
+            return _context5.abrupt("return", res.status(404).json({
+              msg: "error, carrito no encontrado"
+            }));
+          case 11:
+            console.log(carritoElegido);
+            productoElegido = carritoElegido.productos.find(function (unProducto) {
+              return unProducto.id == id_prod;
+            });
+            console.log(productoElegido);
+            if (!(productoElegido == undefined)) {
+              _context5.next = 16;
+              break;
+            }
+            return _context5.abrupt("return", res.status(404).json({
+              msg: "error, producto no encontrado"
+            }));
+          case 16:
+            carritoElegido.productos.splice(productoElegido, 1);
+            carritosString = JSON.stringify(carritos, null, "\t");
+            _context5.next = 20;
+            return fs.promises.writeFile(fileName, carritosString);
+          case 20:
+            res.json({
+              msg: "Borrando producto ".concat(id_prod, " del carrito ").concat(id_carrito)
+            });
+          case 21:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+  return function (_x9, _x10) {
+    return _ref5.apply(this, arguments);
   };
 }());
 module.exports = rutaCarrito;
