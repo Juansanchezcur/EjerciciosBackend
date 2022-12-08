@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const carritoModel = require("../models/carrito");
+
 const productsCollection = "products";
 
 const productSchema = new mongoose.Schema(
