@@ -5,7 +5,7 @@ import { validateLogIn } from "../middlewares/middlewares.js";
 
 router.post("/login", login);
 
-router.get("/secret-endpoint", validateLogIn, visit);
+router.get("/visit", validateLogIn, visit);
 
 router.post("/logout", validateLogIn, logout);
 
