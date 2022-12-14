@@ -1,0 +1,5 @@
+Rutas 
+
+/api/login con username y password en el body para loguearse
+/api/logout estando logueado para salir
+/api/visit estando logueado para aumentar el contador de visitas
