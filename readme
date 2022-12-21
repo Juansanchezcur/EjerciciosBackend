@@ -1,0 +1,10 @@
+Métodos de usuarios:
+
+SIGNUP:
+/POST:  http://localhost:8080/api/usuarios/signup
+
+LOGIN:
+/POST:  http://localhost:8080/api/usuarios/login
+
+DATA:
+/GET:    http://localhost:8080/api/usuarios/home
