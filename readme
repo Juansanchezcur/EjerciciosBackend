@@ -8,3 +8,10 @@ LOGIN:
 
 DATA:
 /GET:    http://localhost:8080/api/usuarios/home
+
+
+Métodos de procesos
+
+http://localhost:8080/api/proceso/info
+
+http://localhost:8080/api/proceso/randoms?cant=100000
