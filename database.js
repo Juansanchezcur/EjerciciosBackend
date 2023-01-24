@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const connectionString =
   process.env.MONGO_ATLAS || "mongodb://localhost:27017/coderhouse";
