@@ -24,6 +24,10 @@ var UserSchema = new _mongoose.Schema({
   admin: {
     type: Boolean,
     "default": false
+  },
+  telephone: {
+    type: Number,
+    required: true
   }
 });
 UserSchema.methods.encryptPassword = /*#__PURE__*/function () {
@@ -73,5 +77,5 @@ UserSchema.methods.matchPassword = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
-var UserModel = (0, _mongoose.model)('user', UserSchema);
+var UserModel = (0, _mongoose.model)("user", UserSchema);
 exports.UserModel = UserModel;

@@ -1,12 +1,14 @@
 const { Router } = require("express");
 const productModel = require("../models/products");
 const { v4: uuidv4 } = require("uuid");
+const logger = require("../utils/logger");
 
 const rutaProductos = Router();
 
 rutaProductos.get("/", async (req, res) => {
   const productos = await productModel.find({});
   if (!productos.length) {
+    logger.error(`Todavía no tenemos productos`);
     return res.status(404).json({
       msg: "Todavía no tenemos productos",
     });
@@ -30,11 +32,13 @@ rutaProductos.get("/:id", async (req, res) => {
         producto: producto,
       });
     } else {
+      logger.error(`error, producto no encontrado`);
       return res.status(404).json({
         msg: "error, producto no encontrado",
       });
     }
   } catch (err) {
+    logger.error(`Hubo un error, por favor verifica los datos`);
     return res.status(404).json({
       msg: "Hubo un error, por favor verifica los datos",
     });
@@ -46,8 +50,9 @@ rutaProductos.post("/", async (req, res) => {
   console.log(req.body);
 
   if (!name || !price || !description || !photo || !price || !stock) {
+    logger.error(`Hubo un error, por favor verifica los datos`);
     return res.status(400).json({
-      msg: "Por favor, verifica los datos ",
+      msg: `Hubo un error, por favor verifica los datos`,
     });
   }
 
@@ -74,6 +79,7 @@ rutaProductos.put("/:id", async (req, res) => {
     const { name, description, photo, price, stock } = req.body;
 
     if (!name || !price || !description || !photo || !price || !stock) {
+      logger.error(`Hubo un error, por favor verifica los datos`);
       return res.status(400).json({
         msg: "Por favor verifica los datos ingresados",
       });
@@ -99,6 +105,7 @@ rutaProductos.put("/:id", async (req, res) => {
         producto: productoActualizado,
       });
     } else {
+      logger.error("error, producto no encontrado");
       return res.status(404).json({
         msg: "error, producto no encontrado",
       });

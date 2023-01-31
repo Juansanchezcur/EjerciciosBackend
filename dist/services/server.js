@@ -8,6 +8,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var express = require("express");
 require("dotenv").config();
 var RouterPrincipal = require("../routes/index");
+var logger = require("../utils/logger");
 var app = express();
 app.use(express.json());
 app.use(express.urlencoded({
@@ -29,11 +30,14 @@ var StoreOptions = {
 app.use((0, _expressSession["default"])(StoreOptions));
 app.use(_passport["default"].initialize());
 app.use(_passport["default"].session());
+app.use(function (req, res, next) {
+  logger.info("\n      M\xE9todo= ".concat(req.method, ", Ruta= ").concat(req.path)), next();
+});
 _passport["default"].use("login", _auth.loginFunc);
 _passport["default"].use("signup", _auth.signUpFunc);
 app.use("/api", RouterPrincipal);
 app.use(function (err, req, res, next) {
-  console.error(err.stack);
+  logger.error(err.stack);
   res.status(500).send({
     msg: "Tuvimos un problema"
   });

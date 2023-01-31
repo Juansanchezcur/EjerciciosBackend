@@ -10,7 +10,7 @@ var path = require("path");
 var rutaProcess = Router();
 var scriptPath = path.resolve(__dirname, "../utils/math.js");
 rutaProcess.get("/info", function (req, res) {
-  res.json({
+  var info = {
     Argumentos_de_entrada: args,
     Path_de_ejecucion: process.cwd(),
     Id_del_Proceso: process.pid,
@@ -18,9 +18,12 @@ rutaProcess.get("/info", function (req, res) {
     Titulo_del_proceso: process.tittle,
     Sistema_operativo: process.platform,
     Uso_de_memoria: process.memoryUsage()
+  };
+  console.log(info);
+  res.json({
+    info: info
   });
 });
-module.exports = rutaProcess;
 rutaProcess.get("/randoms", function (req, res) {
   var cantidad;
   req.query.cant ? cantidad = req.query.cant : cantidad = 100000000;
@@ -32,3 +35,4 @@ rutaProcess.get("/randoms", function (req, res) {
     });
   });
 });
+module.exports = rutaProcess;

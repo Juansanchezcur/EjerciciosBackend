@@ -1,7 +1,7 @@
 "use strict";
 
 var mongoose = require("mongoose");
-var CarritoCollection = "carritos";
+var carritosCollection = "carritos";
 var CarritoSchema = new mongoose.Schema({
   productos: {
     type: Array
@@ -9,5 +9,5 @@ var CarritoSchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
-var CarritoModel = mongoose.model(CarritoCollection, CarritoSchema);
-module.exports = CarritoModel;
+var carritoModel = mongoose.model(carritosCollection, CarritoSchema);
+module.exports = carritoModel;

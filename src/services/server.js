@@ -5,7 +5,7 @@ import session from "express-session";
 import passport from "passport";
 import { loginFunc, signUpFunc } from "./auth.js";
 import MongoStore from "connect-mongo";
-
+const logger = require("../utils/logger");
 const app = express();
 
 app.use(express.json());
@@ -33,13 +33,18 @@ app.use(passport.initialize());
 
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  logger.info(`
+      Método= ${req.method}, Ruta= ${req.path}`),
+    next();
+});
+
 passport.use("login", loginFunc);
 passport.use("signup", signUpFunc);
-
 app.use("/api", RouterPrincipal);
 
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  logger.error(err.stack);
   res.status(500).send({
     msg: "Tuvimos un problema",
   });

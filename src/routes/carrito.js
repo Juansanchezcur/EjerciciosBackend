@@ -2,6 +2,12 @@ const { Router } = require("express");
 const rutaCarrito = Router();
 const carritoModel = require("../models/carrito");
 const productModel = require("../models/products");
+const logger = require("../utils/logger");
+
+import {
+  sendWhattsapToHost,
+  sendWhatsappToClient,
+} from "../controllers/sms.controller";
 
 rutaCarrito.post("/", async (req, res) => {
   const nuevoCarrito = {
@@ -22,6 +28,7 @@ rutaCarrito.get("/:id/productos", async (req, res) => {
     console.log(carrito);
     if (carrito.length == 1) {
       if (carrito[0].productos.length < 1) {
+        logger.error(`El carrito con id:${id} todavía no tiene productos`);
         res.json({
           msg: `El carrito con id:${id} todavía no tiene productos`,
         });
@@ -31,11 +38,13 @@ rutaCarrito.get("/:id/productos", async (req, res) => {
         });
       }
     } else {
+      logger.error("error, carrito no encontrado");
       return res.status(404).json({
         msg: "error, carrito no encontrado",
       });
     }
   } catch (err) {
+    logger.error("Hubo un error, por favor verifica los datos");
     return res.status(404).json({
       msg: "Hubo un error, por favor verifica los datos",
     });
@@ -48,26 +57,33 @@ rutaCarrito.post("/:id_carrito/productos/:id_prod", async (req, res) => {
     const { quantity } = req.body;
 
     if (!quantity || quantity < 1) {
+      logger.error("cantidad ingresada menor a 0");
       return res.status(400).json({
         msg: "Por favor, ingresa una cantidad mayor a 0 ",
       });
     }
     //Traigo los datos de los archivos
     const carrito = await carritoModel.find({ _id: id_carrito });
+
     const producto = await productModel.find({ _id: id_prod });
     console.log("producto ", producto);
     if (!carrito) {
+      logger.error("error, carrito no encontrado");
       return res.status(404).json({
         msg: "error, carrito no encontrado",
       });
     }
 
     if (!producto) {
+      logger.error("error, producto no encontrado");
       return res.status(404).json({
         msg: "error, producto no encontrado",
       });
     }
     if (quantity > producto.stock) {
+      logger.error(
+        "La cantidad elegida no es correcta, elija por favor un número entre 1 y el stock máximo"
+      );
       return res.status(400).json({
         msg: "La cantidad elegida no es correcta, elija por favor un número entre 1 y el stock máximo",
         stock: producto.stock,
@@ -97,6 +113,7 @@ rutaCarrito.post("/:id_carrito/productos/:id_prod", async (req, res) => {
       Carrito: CarritoActualizado,
     });
   } catch (err) {
+    logger.error("Hubo un error, por favor verifica los datos");
     return res.status(404).json({
       msg: "Hubo un error, por favor verifica los datos",
     });
@@ -114,11 +131,13 @@ rutaCarrito.delete("/:id", async (req, res) => {
         producto: carritoBorrado,
       });
     } else {
+      logger.error("error, carrito no encontrado");
       return res.status(404).json({
         msg: "error, carrito no encontrado",
       });
     }
   } catch (err) {
+    logger.error("Hubo un error, por favor verifica los datos");
     return res.status(404).json({
       msg: "Hubo un error, por favor verifica los datos",
     });
@@ -132,6 +151,7 @@ rutaCarrito.delete("/:id_carrito/productos/:id_prod", async (req, res) => {
     const carritoElegido = await carritoModel.find({ _id: id_carrito });
 
     if (!carritoElegido) {
+      logger.error("error, carrito no encontrado");
       return res.status(404).json({
         msg: "error, carrito no encontrado",
       });
@@ -143,6 +163,7 @@ rutaCarrito.delete("/:id_carrito/productos/:id_prod", async (req, res) => {
 
     console.log(productoElegido);
     if (productoElegido == undefined) {
+      logger.error("error, producto no encontrado");
       return res.status(404).json({
         msg: "error, producto no encontrado",
       });
@@ -161,7 +182,37 @@ rutaCarrito.delete("/:id_carrito/productos/:id_prod", async (req, res) => {
       carrito_actualizado: CarritoActualizado,
     });
   } catch (err) {
-    console.log(err);
+    logger.error("Hubo un error, por favor verifica los datos");
+    return res.status(404).json({
+      msg: "Hubo un error, por favor verifica los datos",
+    });
+  }
+});
+
+rutaCarrito.post("/:id_carrito/confirmar", async (req, res) => {
+  try {
+    const { id_carrito } = req.params;
+
+    const carrito = await carritoModel.find({ _id: id_carrito });
+
+    logger.info(carrito["_id"]);
+
+    const listadoDeproductos = "";
+    /*  carrito.productos.foreach((producto) => {
+      listadoDeproductos.concat(`${producto._id}+ ${producto.quantity}\n`);
+    });
+    console.log(listadoDeproductos);
+    const hostMessage = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`;
+    const userMessage = `Carrito confirmado:\n Productos: \n\n${listadoDeproductos}\n\n a la brevedad nos contactaremos con usted`;
+    sendWhattsapToHost(hostMessage),
+      sendWhatsappToClient(userMessage), */
+    //await carritoModel.findByIdAndDelete({ _id: id_carrito });
+    res.json({
+      msg: "Confirmación de compra exitosa",
+      Carrito: id_carrito,
+    });
+  } catch (error) {
+    logger.error("Hubo un error, por favor verifica los datos " + error);
     return res.status(404).json({
       msg: "Hubo un error, por favor verifica los datos",
     });

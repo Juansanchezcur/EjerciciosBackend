@@ -11,7 +11,8 @@ const strategyOptions = {
 const signup = async (req, username, password, done) => {
   console.log("SIGNUP!");
   try {
-    const newUser = new UserModel({ username, password });
+    const { telephone, admin } = req.body;
+    const newUser = new UserModel({ username, password, telephone, admin });
     newUser.password = await newUser.encryptPassword(password);
     await newUser.save();
     return done(null, newUser);

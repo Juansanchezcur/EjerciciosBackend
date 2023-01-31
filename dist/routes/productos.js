@@ -9,6 +9,7 @@ var _require = require("express"),
 var productModel = require("../models/products");
 var _require2 = require("uuid"),
   uuidv4 = _require2.v4;
+var logger = require("../utils/logger");
 var rutaProductos = Router();
 rutaProductos.get("/", /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res) {
@@ -22,17 +23,18 @@ rutaProductos.get("/", /*#__PURE__*/function () {
           case 2:
             productos = _context.sent;
             if (productos.length) {
-              _context.next = 7;
+              _context.next = 8;
               break;
             }
+            logger.error("Todav\xEDa no tenemos productos");
             return _context.abrupt("return", res.status(404).json({
               msg: "Todavía no tenemos productos"
             }));
-          case 7:
+          case 8:
             res.json({
               productos: productos
             });
-          case 8:
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -67,27 +69,29 @@ rutaProductos.get("/:id", /*#__PURE__*/function () {
               msg: "devolviendo el producto con id ".concat(id),
               producto: producto
             });
-            _context2.next = 11;
+            _context2.next = 12;
             break;
           case 10:
+            logger.error("error, producto no encontrado");
             return _context2.abrupt("return", res.status(404).json({
               msg: "error, producto no encontrado"
             }));
-          case 11:
-            _context2.next = 16;
+          case 12:
+            _context2.next = 18;
             break;
-          case 13:
-            _context2.prev = 13;
+          case 14:
+            _context2.prev = 14;
             _context2.t0 = _context2["catch"](0);
+            logger.error("Hubo un error, por favor verifica los datos");
             return _context2.abrupt("return", res.status(404).json({
               msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 16:
+          case 18:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 13]]);
+    }, _callee2, null, [[0, 14]]);
   }));
   return function (_x3, _x4) {
     return _ref2.apply(this, arguments);
@@ -103,13 +107,14 @@ rutaProductos.post("/", /*#__PURE__*/function () {
             _req$body = req.body, name = _req$body.name, description = _req$body.description, photo = _req$body.photo, price = _req$body.price, stock = _req$body.stock;
             console.log(req.body);
             if (!(!name || !price || !description || !photo || !price || !stock)) {
-              _context3.next = 4;
+              _context3.next = 5;
               break;
             }
+            logger.error("Hubo un error, por favor verifica los datos");
             return _context3.abrupt("return", res.status(400).json({
-              msg: "Por favor, verifica los datos "
+              msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 4:
+          case 5:
             nuevoProducto = {
               name: name,
               description: description,
@@ -119,16 +124,16 @@ rutaProductos.post("/", /*#__PURE__*/function () {
               stock: stock
             };
             console.log("nuevo Producto: " + nuevoProducto);
-            _context3.next = 8;
+            _context3.next = 9;
             return productModel.create(nuevoProducto);
-          case 8:
+          case 9:
             producto = _context3.sent;
             console.log(producto);
             res.json({
               msg: "Producto guardado con Éxito",
               producto: producto
             });
-          case 11:
+          case 12:
           case "end":
             return _context3.stop();
         }
@@ -150,13 +155,14 @@ rutaProductos.put("/:id", /*#__PURE__*/function () {
             id = req.params.id;
             _req$body2 = req.body, name = _req$body2.name, description = _req$body2.description, photo = _req$body2.photo, price = _req$body2.price, stock = _req$body2.stock;
             if (!(!name || !price || !description || !photo || !price || !stock)) {
-              _context4.next = 5;
+              _context4.next = 6;
               break;
             }
+            logger.error("Hubo un error, por favor verifica los datos");
             return _context4.abrupt("return", res.status(400).json({
               msg: "Por favor verifica los datos ingresados"
             }));
-          case 5:
+          case 6:
             datosActualizados = {
               name: name,
               description: description,
@@ -164,42 +170,43 @@ rutaProductos.put("/:id", /*#__PURE__*/function () {
               price: price,
               stock: stock
             };
-            _context4.next = 8;
+            _context4.next = 9;
             return productModel.findByIdAndUpdate(id, datosActualizados, {
               "new": true
             });
-          case 8:
+          case 9:
             productoActualizado = _context4.sent;
             console.log(productoActualizado);
             if (!productoActualizado) {
-              _context4.next = 14;
+              _context4.next = 15;
               break;
             }
             res.json({
               msg: "Producto con id: ".concat(id, " modificado correctamente"),
               producto: productoActualizado
             });
-            _context4.next = 15;
+            _context4.next = 17;
             break;
-          case 14:
+          case 15:
+            logger.error("error, producto no encontrado");
             return _context4.abrupt("return", res.status(404).json({
               msg: "error, producto no encontrado"
             }));
-          case 15:
-            _context4.next = 20;
-            break;
           case 17:
-            _context4.prev = 17;
+            _context4.next = 22;
+            break;
+          case 19:
+            _context4.prev = 19;
             _context4.t0 = _context4["catch"](0);
             return _context4.abrupt("return", res.status(404).json({
               msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 20:
+          case 22:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 17]]);
+    }, _callee4, null, [[0, 19]]);
   }));
   return function (_x7, _x8) {
     return _ref4.apply(this, arguments);
