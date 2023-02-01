@@ -4,7 +4,8 @@ var mongoose = require("mongoose");
 var carritosCollection = "carritos";
 var CarritoSchema = new mongoose.Schema({
   productos: {
-    type: Array
+    type: Array,
+    "default": []
   }
 }, {
   timestamps: true

@@ -25,7 +25,7 @@ var productSchema = new mongoose.Schema({
   price: {
     type: Number,
     require: true,
-    max: 10
+    max: 100000
   },
   stock: {
     type: Number,

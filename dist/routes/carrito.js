@@ -331,7 +331,7 @@ rutaCarrito["delete"]("/:id_carrito/productos/:id_prod", /*#__PURE__*/function (
 }());
 rutaCarrito.post("/:id_carrito/confirmar", /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(req, res) {
-    var id_carrito, carrito, listadoDeproductos;
+    var id_carrito, carrito, listadoDeproductos, hostMessage, userMessage;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
@@ -344,36 +344,40 @@ rutaCarrito.post("/:id_carrito/confirmar", /*#__PURE__*/function () {
             });
           case 4:
             carrito = _context6.sent;
-            logger.info(carrito["_id"]);
-            listadoDeproductos = "";
-            /*  carrito.productos.foreach((producto) => {
-              listadoDeproductos.concat(`${producto._id}+ ${producto.quantity}\n`);
+            logger.info(carrito);
+            console.log(carrito[0].productos);
+            listadoDeproductos = carrito[0].productos.map(function (producto) {
+              return "ID: ".concat(producto._id, "      Cantidad ").concat(producto.quantity, " \n");
             });
-            console.log(listadoDeproductos);
-            const hostMessage = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`;
-            const userMessage = `Carrito confirmado:\n Productos: \n\n${listadoDeproductos}\n\n a la brevedad nos contactaremos con usted`;
-            sendWhattsapToHost(hostMessage),
-              sendWhatsappToClient(userMessage), */
-            //await carritoModel.findByIdAndDelete({ _id: id_carrito });
+            console.log(listadoDeproductos + "listadoASDASDASD");
+            hostMessage = "Carrito confirmado:\n \n Productos: \n\n".concat(listadoDeproductos);
+            userMessage = "Querido Cliente:\n \nQued\xF3 confirmado su carrito con los siguientes productos: \n\n".concat(listadoDeproductos, "\n\n A la brevedad nos contactaremos con usted");
+            (0, _sms.sendWhattsapToHost)(hostMessage);
+            (0, _sms.sendWhatsappToClient)(userMessage);
+            _context6.next = 15;
+            return carritoModel.findByIdAndDelete({
+              _id: id_carrito
+            });
+          case 15:
             res.json({
               msg: "Confirmación de compra exitosa",
               Carrito: id_carrito
             });
-            _context6.next = 14;
+            _context6.next = 22;
             break;
-          case 10:
-            _context6.prev = 10;
+          case 18:
+            _context6.prev = 18;
             _context6.t0 = _context6["catch"](0);
             logger.error("Hubo un error, por favor verifica los datos " + _context6.t0);
             return _context6.abrupt("return", res.status(404).json({
               msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 14:
+          case 22:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[0, 10]]);
+    }, _callee6, null, [[0, 18]]);
   }));
   return function (_x11, _x12) {
     return _ref6.apply(this, arguments);

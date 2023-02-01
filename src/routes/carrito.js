@@ -194,19 +194,18 @@ rutaCarrito.post("/:id_carrito/confirmar", async (req, res) => {
     const { id_carrito } = req.params;
 
     const carrito = await carritoModel.find({ _id: id_carrito });
+    logger.info(carrito);
+    console.log(carrito[0].productos);
 
-    logger.info(carrito["_id"]);
-
-    const listadoDeproductos = "";
-    /*  carrito.productos.foreach((producto) => {
-      listadoDeproductos.concat(`${producto._id}+ ${producto.quantity}\n`);
-    });
-    console.log(listadoDeproductos);
+    const listadoDeproductos = carrito[0].productos.map(
+      (producto) => `ID: ${producto._id}      Cantidad ${producto.quantity} \n`
+    );
+    console.log(listadoDeproductos + "listadoASDASDASD");
     const hostMessage = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`;
-    const userMessage = `Carrito confirmado:\n Productos: \n\n${listadoDeproductos}\n\n a la brevedad nos contactaremos con usted`;
+    const userMessage = `Querido Cliente:\n \nQuedó confirmado su carrito con los siguientes productos: \n\n${listadoDeproductos}\n\n A la brevedad nos contactaremos con usted`;
     sendWhattsapToHost(hostMessage),
-      sendWhatsappToClient(userMessage), */
-    //await carritoModel.findByIdAndDelete({ _id: id_carrito });
+      sendWhatsappToClient(userMessage),
+      await carritoModel.findByIdAndDelete({ _id: id_carrito });
     res.json({
       msg: "Confirmación de compra exitosa",
       Carrito: id_carrito,

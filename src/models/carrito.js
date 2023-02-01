@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const carritosCollection = "carritos";
 
 const CarritoSchema = new mongoose.Schema(
-  { productos: { type: Array } },
+  {
+    productos: { type: Array, default: [] },
+  },
   { timestamps: true }
 );
 
