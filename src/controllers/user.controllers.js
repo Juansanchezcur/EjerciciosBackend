@@ -27,7 +27,7 @@ export const signUp = (req, res, next) => {
 };
 
 export const login = (req, res) => {
-  res.json({ msg: "Welcome!" });
+  res.json({ msg: "Welcome!", user: req.user });
 };
 
 export const getHome = (req, res) => {

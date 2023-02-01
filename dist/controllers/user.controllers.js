@@ -58,7 +58,8 @@ var signUp = function signUp(req, res, next) {
 exports.signUp = signUp;
 var login = function login(req, res) {
   res.json({
-    msg: "Welcome!"
+    msg: "Welcome!",
+    user: req.user
   });
 };
 exports.login = login;
