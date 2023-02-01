@@ -195,12 +195,11 @@ rutaCarrito.post("/:id_carrito/confirmar", async (req, res) => {
 
     const carrito = await carritoModel.find({ _id: id_carrito });
     logger.info(carrito);
-    console.log(carrito[0].productos);
 
     const listadoDeproductos = carrito[0].productos.map(
       (producto) => `ID: ${producto._id}      Cantidad ${producto.quantity} \n`
     );
-    console.log(listadoDeproductos + "listadoASDASDASD");
+
     const hostMessage = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`;
     const userMessage = `Querido Cliente:\n \nQuedó confirmado su carrito con los siguientes productos: \n\n${listadoDeproductos}\n\n A la brevedad nos contactaremos con usted`;
     sendWhattsapToHost(hostMessage),
