@@ -10,8 +10,35 @@ DATA:
 /GET:    http://localhost:8080/api/usuarios/home
 
 
+
+
 Métodos de procesos
 
-http://localhost:8080/api/proceso/info
+PROCESS INFO:
+/GET http://localhost:8080/api/proceso/info
 
-http://localhost:8080/api/proceso/randoms?cant=100000
+RANDOM NUMBERS:
+/GET http://localhost:8080/api/proceso/randoms?cant=100000
+
+
+
+
+Métodos de carrito
+
+Crear nuevo Carrito:
+/POST http://localhost:8080/api/carrito/
+
+Borrar Carrito:
+/DELETE http://localhost:8080/api/carrito/:id
+
+Agregar producto a un Carrito:
+/POST http://localhost:8080/api/carrito/:idCarrito/productos/:idProducto
+
+Borrar Producto de un carrito:
+/DELETE http://localhost:8080/api/carrito/:idCarrito/productos/:idProducto
+
+Traer productos dentro de un carrito:
+/GET http://localhost:8080/api/carrito/:idCarrito/productos
+
+Confirmar carrito:
+/POST http://localhost:8080/api/carrito/:idCarrito/confirmar

@@ -4,7 +4,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.signUp = exports.login = exports.getHome = void 0;
+exports.signUp = exports.sendMailEthereal = exports.login = exports.getHome = void 0;
 var _passport = _interopRequireDefault(require("passport"));
 var _emailService = require("../services/email.service.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -39,6 +39,7 @@ var sendMailEthereal = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+exports.sendMailEthereal = sendMailEthereal;
 var passportOptions = {
   badRequestMessage: "falta username / password / telephone"
 };
@@ -57,8 +58,7 @@ var signUp = function signUp(req, res, next) {
 exports.signUp = signUp;
 var login = function login(req, res) {
   res.json({
-    msg: "Welcome!",
-    user: req.user
+    msg: "Welcome!"
   });
 };
 exports.login = login;

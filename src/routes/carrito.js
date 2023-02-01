@@ -3,7 +3,8 @@ const rutaCarrito = Router();
 const carritoModel = require("../models/carrito");
 const productModel = require("../models/products");
 const logger = require("../utils/logger");
-
+import { transporter, message } from "../services/email.service.js";
+import { sendMailEthereal } from "../controllers/user.controllers";
 import {
   sendWhattsapToHost,
   sendWhatsappToClient,
@@ -195,16 +196,21 @@ rutaCarrito.post("/:id_carrito/confirmar", async (req, res) => {
 
     const carrito = await carritoModel.find({ _id: id_carrito });
     logger.info(carrito);
-
+    //Envío de Whatsapp
     const listadoDeproductos = carrito[0].productos.map(
       (producto) => `ID: ${producto._id}      Cantidad ${producto.quantity} \n`
     );
-
     const hostMessage = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`;
-    const userMessage = `Querido Cliente:\n \nQuedó confirmado su carrito con los siguientes productos: \n\n${listadoDeproductos}\n\n A la brevedad nos contactaremos con usted`;
+    const userMessage = `Querido ${req.user.username}:\n \nQuedó confirmado su carrito con los siguientes productos: \n\n${listadoDeproductos}\n\n A la brevedad nos contactaremos con usted`;
+
     sendWhattsapToHost(hostMessage),
       sendWhatsappToClient(userMessage),
-      await carritoModel.findByIdAndDelete({ _id: id_carrito });
+      //Envío de Email
+      (message.text = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`),
+      (message.subject = `Carrito confirmado Usuario: ${req.user.username}`);
+    sendMailEthereal();
+    //borrar Carrito
+    await carritoModel.findByIdAndDelete({ _id: id_carrito });
     res.json({
       msg: "Confirmación de compra exitosa",
       Carrito: id_carrito,

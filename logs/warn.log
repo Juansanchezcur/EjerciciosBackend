@@ -54,3 +54,6 @@
 [31merror[39m | Feb-01-2023 01:42:02 | Hubo un error, por favor verifica los datos TypeError: carrito[0].productos.foreach is not a function
 [31merror[39m | Feb-01-2023 01:46:30 | Hubo un error, por favor verifica los datos ReferenceError: producto is not defined
 [31merror[39m | Feb-01-2023 01:52:43 | Hubo un error, por favor verifica los datos TypeError: carrito[0].productos.pluck is not a function
+[31merror[39m | Feb-01-2023 10:08:44 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'username')
+[31merror[39m | Feb-01-2023 10:12:48 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'productos')
+[31merror[39m | Feb-01-2023 10:27:59 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'username')

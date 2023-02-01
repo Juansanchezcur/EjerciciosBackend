@@ -1,7 +1,7 @@
 import passport from "passport";
 import { transporter, message } from "../services/email.service.js";
 
-const sendMailEthereal = async (req, res, user) => {
+export const sendMailEthereal = async (req, res, user) => {
   try {
     await transporter.sendMail(message);
     console.log("Email enviado!");
@@ -27,7 +27,7 @@ export const signUp = (req, res, next) => {
 };
 
 export const login = (req, res) => {
-  res.json({ msg: "Welcome!", user: req.user });
+  res.json({ msg: "Welcome!" });
 };
 
 export const getHome = (req, res) => {
