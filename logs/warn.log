@@ -57,3 +57,36 @@
 [31merror[39m | Feb-01-2023 10:08:44 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'username')
 [31merror[39m | Feb-01-2023 10:12:48 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'productos')
 [31merror[39m | Feb-01-2023 10:27:59 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'username')
+[31merror[39m | Feb-06-2023 21:05:38 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:06:24 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:07:42 | error, carrito no encontrado
+[31merror[39m | Feb-06-2023 21:09:59 | error, producto no encontrado
+[31merror[39m | Feb-06-2023 21:16:21 | error, producto no encontrado
+[31merror[39m | Feb-06-2023 21:24:47 | error, carrito no encontrado
+[31merror[39m | Feb-06-2023 21:24:57 | error, carrito no encontrado
+[31merror[39m | Feb-06-2023 21:27:08 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:27:13 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:27:30 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:27:43 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:27:46 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:28:24 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:28:26 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:30:17 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:30:18 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:31:30 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:31:31 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:34:06 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:34:07 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:34:59 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:35:32 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:37:25 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:38:21 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:38:24 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:39:12 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'push')
+[31merror[39m | Feb-06-2023 21:41:21 | Hubo un error, por favor verifica los datos
+[31merror[39m | Feb-06-2023 21:42:20 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'find')
+[31merror[39m | Feb-06-2023 21:44:10 | Hubo un error, por favor verifica los datosReferenceError: productoElegido is not defined
+[31merror[39m | Feb-06-2023 21:44:11 | Hubo un error, por favor verifica los datosReferenceError: productoElegido is not defined
+[31merror[39m | Feb-06-2023 21:45:40 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'find')
+[31merror[39m | Feb-06-2023 21:46:08 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'find')
+[31merror[39m | Feb-06-2023 21:48:03 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'find')
