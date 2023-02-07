@@ -90,3 +90,9 @@
 [31merror[39m | Feb-06-2023 21:45:40 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'find')
 [31merror[39m | Feb-06-2023 21:46:08 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'find')
 [31merror[39m | Feb-06-2023 21:48:03 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'find')
+[31merror[39m | Feb-07-2023 01:25:16 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'productos')
+[31merror[39m | Feb-07-2023 01:27:14 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'productos')
+[31merror[39m | Feb-07-2023 01:27:33 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'productos')
+[31merror[39m | Feb-07-2023 01:27:43 | Hubo un error, por favor verifica los datos TypeError: console.logc is not a function
+[31merror[39m | Feb-07-2023 01:28:50 | error, carrito no encontrado
+[31merror[39m | Feb-07-2023 01:29:24 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'username')

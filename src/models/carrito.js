@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
-const carritosCollection = "carritos";
+const CarritoCollection = "carritos";
 
 const CarritoSchema = new mongoose.Schema(
   {
-    productos: { type: Array, default: [] },
+    productos: { type: Array },
   },
   { timestamps: true }
 );
 
-const carritoModel = mongoose.model(carritosCollection, CarritoSchema);
+const CarritoModel = mongoose.model(CarritoCollection, CarritoSchema);
 
-module.exports = carritoModel;
+module.exports = CarritoModel;

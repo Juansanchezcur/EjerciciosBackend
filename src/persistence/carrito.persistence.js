@@ -9,8 +9,8 @@ switch (option) {
     break;
 }
 
-export async function newCartDB(nuevoCarrito) {
-  return await persistenceCarrito.newCart(nuevoCarrito);
+export async function newCartDB() {
+  return await persistenceCarrito.newCart();
 }
 
 export async function getAllDB() {

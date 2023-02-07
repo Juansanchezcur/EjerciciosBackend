@@ -6,8 +6,8 @@ import {
   deleteCartDB,
 } from "../persistence/carrito.persistence";
 
-export async function newCart(newCart) {
-  const cart = await newCartDB(newCart);
+export async function newCart() {
+  const cart = await newCartDB();
   return cart;
 }
 

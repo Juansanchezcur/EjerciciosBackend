@@ -1,7 +1,10 @@
-const carritoModel = require("../../models/products");
+const carritoModel = require("../../models/carrito");
 
-export const newCart = async (nuevoCarrito) => {
+export const newCart = async () => {
   try {
+    const nuevoCarrito = {
+      productos: [],
+    };
     const createdCart = await carritoModel.create(nuevoCarrito);
     return createdCart;
   } catch (error) {

@@ -16,10 +16,7 @@ import {
 import { getProductById } from "../services/products.service";
 
 export const nuevoCarrito = async (req, res) => {
-  const nuevoCarrito = {
-    productos: [],
-  };
-  const carritoAgregado = await newCart(nuevoCarrito);
+  const carritoAgregado = await newCart();
 
   res.json({
     msg: "Carrito guardado con Éxito",
@@ -104,17 +101,13 @@ export const agregarProductoAlCarrito = async (req, res) => {
       photo: producto[0].photo,
       price: producto[0].price,
     };
-    console.log(carrito);
-    if (carrito[0].productos) {
-      carrito[0].productos.push(nuevoProducto);
-    } else {
-      carrito[0].productos = [];
-      carrito[0].productos.push(nuevoProducto);
-    }
+
+    carrito[0].productos.push(nuevoProducto);
+
     console.log("tengo estos productos: ", carrito[0].productos);
     const CarritoActualizado = await updateCart(
       id_carrito,
-      { productos: carrito[0].productos },
+      { $set: { productos: carrito[0].productos } },
       { new: true }
     );
     res.json({
@@ -172,7 +165,6 @@ export const borrarProductoDelCarrito = async (req, res) => {
       (unProducto) => unProducto._id == id_prod
     );
 
-    console.log(productoElegido);
     if (productoElegido == undefined) {
       logger.error("error, producto no encontrado");
       return res.status(404).json({
