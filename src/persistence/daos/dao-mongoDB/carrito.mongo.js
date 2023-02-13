@@ -1,12 +1,12 @@
-const carritoModel = require("../../models/carrito");
-
+const carritoModel = require("../../../models/carrito");
+const { asDto } = require("../../dto/carrito.dto.js");
 export const newCart = async () => {
   try {
     const nuevoCarrito = {
       productos: [],
     };
     const createdCart = await carritoModel.create(nuevoCarrito);
-    return createdCart;
+    return asDto(createdCart);
   } catch (error) {
     console.log(error);
   }
@@ -14,8 +14,8 @@ export const newCart = async () => {
 
 export const getAll = async () => {
   try {
-    const products = await carritoModel.find({});
-    return products;
+    const carts = await carritoModel.find({});
+    return asDto(carts);
   } catch (error) {
     console.log(error);
   }
@@ -24,7 +24,7 @@ export const getAll = async () => {
 export const getById = async (id) => {
   try {
     const cart = await carritoModel.find({ _id: id });
-    return cart;
+    return asDto(cart);
   } catch (error) {
     console.log(error);
   }

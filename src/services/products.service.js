@@ -4,7 +4,7 @@ import {
   getByIdDB,
   updateProductDB,
   deleteProductDB,
-} from "../persistence/products.persistence";
+} from "../persistence/daos/products.persistence.js";
 
 export async function newProduct(product) {
   const prod = await newProductDB(product);

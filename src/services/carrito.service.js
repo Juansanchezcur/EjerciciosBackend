@@ -4,7 +4,7 @@ import {
   getByIdDB,
   updateCartDB,
   deleteCartDB,
-} from "../persistence/carrito.persistence";
+} from "../persistence/daos/carrito.persistence";
 
 export async function newCart() {
   const cart = await newCartDB();

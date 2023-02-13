@@ -1,14 +1,13 @@
 "use strict";
 
 var mongoose = require("mongoose");
-var carritosCollection = "carritos";
+var CarritoCollection = "carritos";
 var CarritoSchema = new mongoose.Schema({
   productos: {
-    type: Array,
-    "default": []
+    type: Array
   }
 }, {
   timestamps: true
 });
-var carritoModel = mongoose.model(carritosCollection, CarritoSchema);
-module.exports = carritoModel;
+var CarritoModel = mongoose.model(CarritoCollection, CarritoSchema);
+module.exports = CarritoModel;
