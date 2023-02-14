@@ -10,9 +10,14 @@ require("dotenv").config();
 var RouterPrincipal = require("../routes/index");
 var logger = require("../utils/logger");
 var app = express();
+var bodyParser = require("body-parser");
+var jsonParser = bodyParser.json();
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
+}));
+app.use(bodyParser.urlencoded({
+  extended: false
 }));
 app.use(express["static"]("public"));
 var ttlSeconds = 300;

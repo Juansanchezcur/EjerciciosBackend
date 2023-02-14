@@ -13,8 +13,10 @@ var ProductsDTO = /*#__PURE__*/_createClass(function ProductsDTO(_ref) {
     price = _ref.price,
     stock = _ref.stock,
     description = _ref.description,
-    photo = _ref.photo;
+    photo = _ref.photo,
+    _id = _ref._id;
   _classCallCheck(this, ProductsDTO);
+  this._id = _id;
   this.name = name;
   this.description = description;
   this.price = price;

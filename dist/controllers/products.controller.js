@@ -60,38 +60,37 @@ var buscarProductoPorId = /*#__PURE__*/function () {
             return (0, _products.getProductById)(id);
           case 4:
             producto = _context2.sent;
-            console.log(producto);
             if (!(producto.length == 1)) {
-              _context2.next = 10;
+              _context2.next = 9;
               break;
             }
             res.json({
               msg: "devolviendo el producto con id ".concat(id),
               producto: producto
             });
-            _context2.next = 12;
+            _context2.next = 11;
             break;
-          case 10:
+          case 9:
             logger.error("error, producto no encontrado");
             return _context2.abrupt("return", res.status(404).json({
               msg: "error, producto no encontrado"
             }));
-          case 12:
-            _context2.next = 18;
+          case 11:
+            _context2.next = 17;
             break;
-          case 14:
-            _context2.prev = 14;
+          case 13:
+            _context2.prev = 13;
             _context2.t0 = _context2["catch"](0);
             logger.error("Hubo un error, por favor verifica los datos");
             return _context2.abrupt("return", res.status(404).json({
               msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 18:
+          case 17:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 14]]);
+    }, _callee2, null, [[0, 13]]);
   }));
   return function buscarProductoPorId(_x3, _x4) {
     return _ref2.apply(this, arguments);
@@ -106,16 +105,15 @@ var nuevoProducto = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _req$body = req.body, name = _req$body.name, description = _req$body.description, photo = _req$body.photo, price = _req$body.price, stock = _req$body.stock;
-            console.log(req.body);
             if (!(!name || !price || !description || !photo || !price || !stock)) {
-              _context3.next = 5;
+              _context3.next = 4;
               break;
             }
             logger.error("Hubo un error, por favor verifica los datos");
             return _context3.abrupt("return", res.status(400).json({
               msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 5:
+          case 4:
             nuevoProducto = {
               name: name,
               description: description,
@@ -124,17 +122,15 @@ var nuevoProducto = /*#__PURE__*/function () {
               price: price,
               stock: stock
             };
-            console.log("nuevo Producto: " + nuevoProducto);
-            _context3.next = 9;
+            _context3.next = 7;
             return (0, _products.newProduct)(nuevoProducto);
-          case 9:
+          case 7:
             producto = _context3.sent;
-            console.log(producto);
             res.json({
               msg: "Producto guardado con Éxito",
               producto: producto
             });
-          case 12:
+          case 9:
           case "end":
             return _context3.stop();
         }
