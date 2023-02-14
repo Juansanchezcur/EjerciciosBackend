@@ -1,5 +1,5 @@
 const productModel = require("../../../models/products");
-const { asDto } = require("../../dto/products.dto");
+
 export const newProduct = async (nuevoProducto) => {
   try {
     const newProduct = await productModel.create(nuevoProducto);
@@ -12,7 +12,7 @@ export const newProduct = async (nuevoProducto) => {
 export const getAll = async () => {
   try {
     const products = await productModel.find({});
-    return asDto(products);
+    return products;
   } catch (error) {
     console.log(error);
   }
@@ -21,7 +21,7 @@ export const getAll = async () => {
 export const getById = async (id) => {
   try {
     const product = await productModel.find({ _id: id });
-    return asDto(product);
+    return product;
   } catch (error) {
     console.log(error);
   }

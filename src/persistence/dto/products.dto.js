@@ -1,5 +1,6 @@
 export default class ProductsDTO {
-  constructor({ name, price, stock, description, photo }) {
+  constructor({ name, price, stock, description, photo, _id }) {
+    this._id = _id;
     this.name = name;
     this.description = description;
     this.price = price;

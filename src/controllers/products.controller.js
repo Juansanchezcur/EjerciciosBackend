@@ -29,7 +29,6 @@ export const buscarProductoPorId = async (req, res) => {
 
     let producto = await getProductById(id);
 
-    console.log(producto);
     if (producto.length == 1) {
       res.json({
         msg: `devolviendo el producto con id ${id}`,
@@ -51,7 +50,6 @@ export const buscarProductoPorId = async (req, res) => {
 
 export const nuevoProducto = async (req, res) => {
   const { name, description, photo, price, stock } = req.body;
-  console.log(req.body);
 
   if (!name || !price || !description || !photo || !price || !stock) {
     logger.error(`Hubo un error, por favor verifica los datos`);
@@ -68,9 +66,8 @@ export const nuevoProducto = async (req, res) => {
     price,
     stock,
   };
-  console.log("nuevo Producto: " + nuevoProducto);
+
   const producto = await newProduct(nuevoProducto);
-  console.log(producto);
   res.json({
     msg: "Producto guardado con Éxito",
     producto: producto,

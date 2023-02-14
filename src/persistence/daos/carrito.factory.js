@@ -28,3 +28,7 @@ export async function updateCartDB(id, data, otraData) {
 export async function deleteCartDB(id) {
   return await daoCarrito.deleteCart(id);
 }
+
+export function getCarritoDao() {
+  return daoCarrito;
+}

@@ -7,10 +7,12 @@ import { loginFunc, signUpFunc } from "./auth.js";
 import MongoStore from "connect-mongo";
 const logger = require("../utils/logger");
 const app = express();
+let bodyParser = require("body-parser");
 
+let jsonParser = bodyParser.json();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 const ttlSeconds = 300;

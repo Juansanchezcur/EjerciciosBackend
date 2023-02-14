@@ -96,3 +96,15 @@
 [31merror[39m | Feb-07-2023 01:27:43 | Hubo un error, por favor verifica los datos TypeError: console.logc is not a function
 [31merror[39m | Feb-07-2023 01:28:50 | error, carrito no encontrado
 [31merror[39m | Feb-07-2023 01:29:24 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'username')
+[31merror[39m | Feb-14-2023 10:39:53 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:39:55 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:40:22 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:40:24 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:41:51 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:42:08 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:42:23 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:44:44 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:46:51 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:47:11 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 10:48:52 | error, producto no encontrado
+[31merror[39m | Feb-14-2023 11:22:48 | El carrito con id:63eb992d456c904168577682 todavía no tiene productos

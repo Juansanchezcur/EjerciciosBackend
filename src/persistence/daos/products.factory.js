@@ -29,3 +29,7 @@ export async function updateProductDB(id, data, otraData) {
 export async function deleteProductDB(id) {
   return await daoProductos.deleteProduct(id);
 }
+
+export function getProductsDao() {
+  return daoProductos;
+}
