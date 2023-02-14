@@ -111,7 +111,7 @@ var CarritoRepository = /*#__PURE__*/function () {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return this.dao.updateProduct(id, data, otraData);
+                return this.dao.updatedoc(id, data, otraData);
               case 2:
                 cart = _context4.sent;
                 cartDto = asDto(cart);
@@ -138,7 +138,7 @@ var CarritoRepository = /*#__PURE__*/function () {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return this.dao.deleteProduct(id);
+                return this.dao.deletedoc(id);
               case 2:
                 cart = _context5.sent;
                 cartDto = asDto(cart);

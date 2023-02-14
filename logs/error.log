@@ -104,3 +104,14 @@
 [31merror[39m | Feb-14-2023 10:47:11 | error, producto no encontrado
 [31merror[39m | Feb-14-2023 10:48:52 | error, producto no encontrado
 [31merror[39m | Feb-14-2023 11:22:48 | El carrito con id:63eb992d456c904168577682 todavía no tiene productos
+[31merror[39m | Feb-14-2023 15:34:42 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'length')
+[31merror[39m | Feb-14-2023 15:47:08 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'length')
+[31merror[39m | Feb-14-2023 15:48:29 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'length')
+[31merror[39m | Feb-14-2023 15:59:35 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'length')
+[31merror[39m | Feb-14-2023 16:14:16 | error, carrito no encontrado
+[31merror[39m | Feb-14-2023 16:14:32 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'length')
+[31merror[39m | Feb-14-2023 16:16:48 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'length')
+[31merror[39m | Feb-14-2023 16:25:38 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading 'length')
+[31merror[39m | Feb-14-2023 17:08:50 | El carrito con id:63ebea32a746023771690551 todavía no tiene productos
+[31merror[39m | Feb-14-2023 17:09:02 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'username')
+[31merror[39m | Feb-14-2023 17:09:27 | Hubo un error, por favor verifica los datosError: Authenticate

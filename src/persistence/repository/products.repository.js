@@ -25,12 +25,12 @@ export default class ProductsRepository {
     return prodDto;
   }
   async updateProductDB(id, data, otraData) {
-    const product = await this.dao.updateProduct(id, data, otraData);
+    const product = await this.dao.updatedoc(id, data, otraData);
     const prodDto = asDto(product);
     return prodDto;
   }
   async deleteProductDB(id) {
-    const product = await this.dao.deleteProduct(id);
+    const product = await this.dao.deletedoc(id);
     const prodDto = asDto(product);
     return prodDto;
   }

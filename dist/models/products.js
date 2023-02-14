@@ -1,7 +1,12 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.productsCollection = exports.productSchema = void 0;
 var mongoose = require("mongoose");
 var productsCollection = "products";
+exports.productsCollection = productsCollection;
 var productSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -35,5 +40,4 @@ var productSchema = new mongoose.Schema({
 }, {
   timestamps: true
 });
-var productModel = mongoose.model(productsCollection, productSchema);
-module.exports = productModel;
+exports.productSchema = productSchema;

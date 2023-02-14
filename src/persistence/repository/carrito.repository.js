@@ -24,12 +24,12 @@ export default class CarritoRepository {
     return cartDto;
   }
   async updateCartDB(id, data, otraData) {
-    const cart = await this.dao.updateProduct(id, data, otraData);
+    const cart = await this.dao.updatedoc(id, data, otraData);
     const cartDto = asDto(cart);
     return cartDto;
   }
   async deleteCartDB(id) {
-    const cart = await this.dao.deleteProduct(id);
+    const cart = await this.dao.deletedoc(id);
     const cartDto = asDto(cart);
     return cartDto;
   }
