@@ -1,5 +1,6 @@
 "use strict";
 
+var _morgan = _interopRequireDefault(require("morgan"));
 var _expressSession = _interopRequireDefault(require("express-session"));
 var _passport = _interopRequireDefault(require("passport"));
 var _auth = require("./auth.js");
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(express["static"]("public"));
+app.use((0, _morgan["default"])("dev"));
 var ttlSeconds = 300;
 var StoreOptions = {
   store: _connectMongo["default"].create({

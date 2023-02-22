@@ -1,4 +1,7 @@
-import { productSchema, productsCollection } from "../../models/products";
+import {
+  productSchema,
+  productsCollection,
+} from "./dao-mongoDB/models/products";
 import MongoDB from "./dao-mongoDB/database.products";
 let option = process.env.PERSISTENCE;
 let daoProductos;

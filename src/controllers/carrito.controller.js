@@ -131,7 +131,7 @@ export const borrarCarrito = async (req, res) => {
     if (carritoBorrado) {
       res.json({
         msg: `Borrando carrito con id ${id}`,
-        producto: carritoBorrado,
+        Carrito: carritoBorrado,
       });
     } else {
       logger.error("error, carrito no encontrado");
@@ -159,7 +159,6 @@ export const borrarProductoDelCarrito = async (req, res) => {
         msg: "error, carrito no encontrado",
       });
     }
-    console.log(carritoElegido + "asdasfasfasfa");
 
     const productoElegido = carritoElegido[0].productos.find(
       (unProducto) => unProducto._id == id_prod
@@ -198,19 +197,24 @@ export const confirmarCarrito = async (req, res) => {
 
     const carrito = await getCartById(id_carrito);
     logger.info(carrito);
-    //Envío de Whatsapp
-    const listadoDeproductos = carrito[0].productos.map(
-      (producto) => `ID: ${producto._id}      Cantidad ${producto.quantity} \n`
-    );
-    const hostMessage = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`;
-    const userMessage = `Querido ${req.user.username}:\n \nQuedó confirmado su carrito con los siguientes productos: \n\n${listadoDeproductos}\n\n A la brevedad nos contactaremos con usted`;
+    if (req.user != undefined) {
+      //Envío de Whatsapp
+      const listadoDeproductos = carrito[0].productos.map(
+        (producto) =>
+          `ID: ${producto._id}      Cantidad ${producto.quantity} \n`
+      );
+      const hostMessage = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`;
+      const userMessage = `Querido ${req.user.username}:\n \nQuedó confirmado su carrito con los siguientes productos: \n\n${listadoDeproductos}\n\n A la brevedad nos contactaremos con usted`;
 
-    sendWhattsapToHost(hostMessage),
-      sendWhatsappToClient(userMessage),
-      //Envío de Email
-      (message.text = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`),
-      (message.subject = `Carrito confirmado Usuario: ${req.user.username}`);
-    sendMailEthereal();
+      sendWhattsapToHost(hostMessage),
+        sendWhatsappToClient(userMessage),
+        //Envío de Email
+        (message.text = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`),
+        (message.subject = `Carrito confirmado Usuario: ${req.user.username}`);
+      sendMailEthereal();
+    } else {
+      logger.error("Por favor logueate antes de confirmar el pedido");
+    }
     //borrar Carrito
     await deleteCart(id_carrito);
     res.json({

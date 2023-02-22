@@ -8,5 +8,5 @@ var _twilio = _interopRequireDefault(require("twilio"));
 var _dotenv = _interopRequireDefault(require("dotenv"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 _dotenv["default"].config();
-var twilioClient = (0, _twilio["default"])(process.env.SID, process.env.TOKEN);
+var twilioClient = (0, _twilio["default"])(process.env.AC_TWILIO_ACCOUNT_SID, process.env.TOKEN);
 exports.twilioClient = twilioClient;

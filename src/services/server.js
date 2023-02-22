@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+import morgan from "morgan";
 const RouterPrincipal = require("../routes/index");
 import session from "express-session";
 import passport from "passport";
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.use(morgan("dev"));
 
 const ttlSeconds = 300;
 

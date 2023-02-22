@@ -1,4 +1,4 @@
-import { CarritoSchema, CarritoCollection } from "../../models/carrito";
+import { CarritoSchema, CarritoCollection } from "./dao-mongoDB/models/carrito";
 import MongoDB from "./dao-mongoDB/database.carrito";
 let option = process.env.PERSISTENCE;
 let daoCarrito;

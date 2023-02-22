@@ -220,7 +220,7 @@ var borrarCarrito = /*#__PURE__*/function () {
             }
             res.json({
               msg: "Borrando carrito con id ".concat(id),
-              producto: carritoBorrado
+              Carrito: carritoBorrado
             });
             _context4.next = 12;
             break;
@@ -273,21 +273,20 @@ var borrarProductoDelCarrito = /*#__PURE__*/function () {
               msg: "error, carrito no encontrado"
             }));
           case 8:
-            console.log(carritoElegido + "asdasfasfasfa");
             productoElegido = carritoElegido[0].productos.find(function (unProducto) {
               return unProducto._id == id_prod;
             });
             if (!(productoElegido == undefined)) {
-              _context5.next = 13;
+              _context5.next = 12;
               break;
             }
             logger.error("error, producto no encontrado");
             return _context5.abrupt("return", res.status(404).json({
               msg: "error, producto no encontrado"
             }));
-          case 13:
+          case 12:
             carritoElegido[0].productos.splice(productoElegido, 1);
-            _context5.next = 16;
+            _context5.next = 15;
             return (0, _carrito.updateCart)({
               _id: id_carrito
             }, {
@@ -295,27 +294,27 @@ var borrarProductoDelCarrito = /*#__PURE__*/function () {
             }, {
               "new": true
             });
-          case 16:
+          case 15:
             CarritoActualizado = _context5.sent;
             res.json({
               msg: "Borrando producto ".concat(id_prod, " del carrito ").concat(id_carrito),
               carrito_actualizado: CarritoActualizado
             });
-            _context5.next = 24;
+            _context5.next = 23;
             break;
-          case 20:
-            _context5.prev = 20;
+          case 19:
+            _context5.prev = 19;
             _context5.t0 = _context5["catch"](0);
             logger.error("Hubo un error, por favor verifica los datos" + _context5.t0);
             return _context5.abrupt("return", res.status(404).json({
               msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 24:
+          case 23:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 20]]);
+    }, _callee5, null, [[0, 19]]);
   }));
   return function borrarProductoDelCarrito(_x9, _x10) {
     return _ref5.apply(this, arguments);
@@ -336,39 +335,43 @@ var confirmarCarrito = /*#__PURE__*/function () {
           case 4:
             carrito = _context6.sent;
             logger.info(carrito);
-            //Envío de Whatsapp
-            listadoDeproductos = carrito[0].productos.map(function (producto) {
-              return "ID: ".concat(producto._id, "      Cantidad ").concat(producto.quantity, " \n");
-            });
-            hostMessage = "Carrito confirmado:\n \n Productos: \n\n".concat(listadoDeproductos);
-            userMessage = "Querido ".concat(req.user.username, ":\n \nQued\xF3 confirmado su carrito con los siguientes productos: \n\n").concat(listadoDeproductos, "\n\n A la brevedad nos contactaremos con usted");
-            (0, _sms.sendWhattsapToHost)(hostMessage), (0, _sms.sendWhatsappToClient)(userMessage),
-            //Envío de Email
-            _emailService.message.text = "Carrito confirmado:\n \n Productos: \n\n".concat(listadoDeproductos), _emailService.message.subject = "Carrito confirmado Usuario: ".concat(req.user.username);
-            (0, _user.sendMailEthereal)();
+            if (req.user != undefined) {
+              //Envío de Whatsapp
+              listadoDeproductos = carrito[0].productos.map(function (producto) {
+                return "ID: ".concat(producto._id, "      Cantidad ").concat(producto.quantity, " \n");
+              });
+              hostMessage = "Carrito confirmado:\n \n Productos: \n\n".concat(listadoDeproductos);
+              userMessage = "Querido ".concat(req.user.username, ":\n \nQued\xF3 confirmado su carrito con los siguientes productos: \n\n").concat(listadoDeproductos, "\n\n A la brevedad nos contactaremos con usted");
+              (0, _sms.sendWhattsapToHost)(hostMessage), (0, _sms.sendWhatsappToClient)(userMessage),
+              //Envío de Email
+              _emailService.message.text = "Carrito confirmado:\n \n Productos: \n\n".concat(listadoDeproductos), _emailService.message.subject = "Carrito confirmado Usuario: ".concat(req.user.username);
+              (0, _user.sendMailEthereal)();
+            } else {
+              logger.error("Por favor logueate antes de confirmar el pedido");
+            }
             //borrar Carrito
-            _context6.next = 13;
+            _context6.next = 9;
             return (0, _carrito.deleteCart)(id_carrito);
-          case 13:
+          case 9:
             res.json({
               msg: "Confirmación de compra exitosa",
               Carrito: id_carrito
             });
-            _context6.next = 20;
+            _context6.next = 16;
             break;
-          case 16:
-            _context6.prev = 16;
+          case 12:
+            _context6.prev = 12;
             _context6.t0 = _context6["catch"](0);
             logger.error("Hubo un error, por favor verifica los datos " + _context6.t0);
             return _context6.abrupt("return", res.status(404).json({
               msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 20:
+          case 16:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[0, 16]]);
+    }, _callee6, null, [[0, 12]]);
   }));
   return function confirmarCarrito(_x11, _x12) {
     return _ref6.apply(this, arguments);

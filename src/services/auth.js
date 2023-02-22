@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { UserModel } from "../models/user.js";
+import { UserModel } from "../persistence/daos/dao-mongoDB/models/user";
 
 const strategyOptions = {
   usernameField: "username",
