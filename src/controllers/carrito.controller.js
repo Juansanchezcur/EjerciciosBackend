@@ -28,7 +28,7 @@ export const productosDelCarrito = async (req, res) => {
   try {
     const id = req.params.id;
     let carrito = await getCartById(id);
-    console.log(carrito);
+
     if (carrito.length == 1) {
       if (carrito[0].productos.length < 1) {
         logger.error(`El carrito con id:${id} todavía no tiene productos`);
@@ -57,7 +57,9 @@ export const productosDelCarrito = async (req, res) => {
 export const agregarProductoAlCarrito = async (req, res) => {
   try {
     const { id_carrito, id_prod } = req.params;
-    const { quantity } = req.body;
+    let { quantity } = req.body;
+
+    quantity = Number(quantity);
 
     if (!quantity || quantity < 1) {
       logger.error("cantidad ingresada menor a 0");
@@ -69,7 +71,7 @@ export const agregarProductoAlCarrito = async (req, res) => {
     const carrito = await getCartById(id_carrito);
 
     const producto = await getProductById(id_prod);
-    console.log("producto ", producto);
+
     if (!carrito) {
       logger.error("error, carrito no encontrado");
       return res.status(404).json({
@@ -92,29 +94,56 @@ export const agregarProductoAlCarrito = async (req, res) => {
         stock: producto.stock,
       });
     }
-
-    const nuevoProducto = {
-      _id: producto[0]._id,
-      quantity,
-      description: producto[0].description,
-      code: producto[0].code,
-      photo: producto[0].photo,
-      price: producto[0].price,
-    };
-
-    carrito[0].productos.push(nuevoProducto);
-
-    console.log("tengo estos productos: ", carrito[0].productos);
-    const CarritoActualizado = await updateCart(
-      id_carrito,
-      { $set: { productos: carrito[0].productos } },
-      { new: true }
+    let productoYaExiste = carrito[0].productos.find(
+      (unProducto) => unProducto.description == producto[0].description
     );
-    res.json({
-      msg: "Producto guardado con Éxito",
-      producto: nuevoProducto,
-      Carrito: CarritoActualizado,
-    });
+
+    if (productoYaExiste) {
+      console.log("el producto ya existía en el carrito");
+
+      const productoActualizado = {
+        _id: producto[0]._id,
+        quantity: productoYaExiste.quantity + quantity,
+        description: producto[0].description,
+        photo: producto[0].photo,
+        price: producto[0].price,
+      };
+      carrito[0].productos[id_prod] = productoActualizado;
+
+      console.log(JSON.stringify(carrito[0].productos) + "djglkasdgjaslkgjak");
+
+      const CarritoActualizado = await updateCart(
+        id_carrito,
+        { $set: { productos: carrito[0].productos[id_prod] } },
+        { new: true }
+      );
+      res.json({
+        msg: "Producto guardado con Éxito",
+        producto_actualizado: productoActualizado,
+        Carrito: CarritoActualizado,
+      });
+    } else {
+      const nuevoProducto = {
+        _id: producto[0]._id,
+        quantity,
+        description: producto[0].description,
+        photo: producto[0].photo,
+        price: producto[0].price,
+      };
+
+      carrito[0].productos.push(nuevoProducto);
+
+      const CarritoActualizado = await updateCart(
+        id_carrito,
+        { $set: { productos: carrito[0].productos } },
+        { new: true }
+      );
+      res.json({
+        msg: "Producto guardado con Éxito",
+        producto: nuevoProducto,
+        Carrito: CarritoActualizado,
+      });
+    }
   } catch (err) {
     logger.error("Hubo un error, por favor verifica los datos " + err);
     return res.status(404).json({
@@ -127,7 +156,7 @@ export const borrarCarrito = async (req, res) => {
   try {
     const { id } = req.params;
     const carritoBorrado = await deleteCart(id);
-    console.log(carritoBorrado);
+
     if (carritoBorrado) {
       res.json({
         msg: `Borrando carrito con id ${id}`,

@@ -97,7 +97,7 @@ export const actualizarProducto = async (req, res) => {
     const productoActualizado = await updateProduct(id, datosActualizados, {
       new: true,
     });
-    console.log(productoActualizado);
+
     if (productoActualizado) {
       res.json({
         msg: `Producto con id: ${id} modificado correctamente`,
@@ -120,7 +120,7 @@ export const eliminarProducto = async (req, res) => {
   try {
     const id = req.params.id;
     const productoBorrado = await deleteProduct(id);
-    console.log(productoBorrado);
+
     if (productoBorrado) {
       res.json({
         msg: `Borrando producto con id ${id}`,

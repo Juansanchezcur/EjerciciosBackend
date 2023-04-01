@@ -1,0 +1,38 @@
+/* General */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+/* CHAT */
+.chat {
+  border: 3px solid;
+  margin-top: 100px;
+  margin-bottom: 200px;
+}
+.chat p {
+  border-bottom: 1px solid;
+  margin-bottom: 0px;
+}
+
+span {
+  margin: 0 10px;
+}
+.usuario {
+  font-weight: bold;
+  color: blue;
+  font-size: 20px;
+}
+
+.fecha {
+  color: brown;
+}
+
+.mensaje {
+  font-style: italic;
+  color: green;
+  font-size: 16px;
+  font-weight: 600;
+}

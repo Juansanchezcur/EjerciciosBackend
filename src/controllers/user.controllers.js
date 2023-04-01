@@ -1,12 +1,13 @@
 import passport from "passport";
 import { transporter, message } from "../services/email.service.js";
+const logger = require("../utils/logger");
 
 export const sendMailEthereal = async (req, res, user) => {
   try {
     await transporter.sendMail(message);
-    console.log("Email enviado!");
+    logger.info("Email enviado!");
   } catch (error) {
-    console.log(error);
+    logger.error(error);
   }
 };
 

@@ -1,0 +1,17 @@
+[
+	{
+		"user": "asd@asd.com",
+		"message": "mensaje",
+		"date": "November 1st 2022, 7:27:48 pm"
+	},
+	{
+		"user": "Flitch@htb.com",
+		"message": "asd",
+		"date": "March 26th 2023, 4:42:38 pm"
+	},
+	{
+		"user": "Flitch@htb.com",
+		"message": "asdasdasd",
+		"date": "March 26th 2023, 4:42:47 pm"
+	}
+]

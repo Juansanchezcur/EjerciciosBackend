@@ -1,13 +1,9 @@
 const server = require("./services/server");
-
-const parseArgs = require("minimist");
-const options = { default: { port: 8080 } };
-const args = parseArgs(process.argv.slice(2), options);
-
-console.log(args);
+import dotenv from "dotenv";
+dotenv.config();
 
 const init = async () => {
-  const puerto = args.port;
+  const puerto = process.env.PORT || 8080;
 
   server.listen(puerto, () => {
     console.log(`Servidor Listo escuchando en el puerto ${puerto}`);
