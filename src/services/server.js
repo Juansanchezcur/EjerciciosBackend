@@ -16,9 +16,14 @@ const http = require("http");
 let io = require("socket.io");
 const moment = require("moment");
 moment().format();
-
+import { info } from '../docs/info.js';
+import swaggerUI from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
 const messagesModel = require("../persistence/daos/dao-mongoDB/models/messages");
 
+const specs = swaggerJSDoc(info);
+
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

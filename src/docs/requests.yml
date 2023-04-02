@@ -1,0 +1,83 @@
+components:
+  parameters:
+    schemas:
+      NewProduct:
+        type: object
+        required: 
+          - name
+          - description
+          - code
+          - price
+          - photo
+          - stock
+        properties:
+          name:
+            type: string
+            description: Nombre del producto
+          description:
+            type: string
+            description: Descripción del producto
+          code:
+            type: number
+            description: Código del producto
+          price:
+            type: number
+            description: Precio del producto
+          photo:
+            type: string
+            description: Imagen del producto
+          stock:
+            type: number
+            description: Cantidades en stock del producto
+        example:
+          name: Auto
+          description: Un auto rojo
+          code: 123
+          price: 5000
+          photo: https://img.freepik.com/fotos-premium/ilustracion-auto-rojo_53876-7896.jpg
+          stock: 5
+      productToCart:
+        type: object
+        required: 
+          - quantity
+        properties:
+          quantity:
+            type: number
+            description: Cantidad de productos a agregar al carrito
+        example:
+          quantity: 5
+      User:
+        type: object
+        required: 
+          - username
+          - password
+        properties:
+          username:
+            type: string
+            description: Usuario de ingreso
+          password:
+            type: string
+            description: Contraseña de ingreso
+        example:
+          username: Carlitosss
+          password: 123123
+      newUser:
+        type: object
+        required: 
+          - username
+          - password
+          - telephone
+        properties:
+          username:
+            type: string
+            description: Usuario de ingreso
+          password:
+            type: string
+            description: Contraseña de ingreso
+          telephone:
+            type: number
+            description: Número de teléfono del usuario nuevo
+        example:
+          username: Carlitosss
+          password: 123123
+          telephone: 123123123

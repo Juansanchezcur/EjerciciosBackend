@@ -1,0 +1,260 @@
+paths:
+  /api/productos:
+    post:
+      summary: Registro de nuevo producto en Base de datos
+      tags: 
+        - Productos
+      parameters:
+      requestBody:
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/parameters/schemas/NewProduct"
+        required: true
+      responses:
+        200:
+          description: Producto guardado con Éxito.
+          content:
+           aplication/json:
+            schema:
+              msg: "Producto guardado con Éxito"
+              $ref: "#/components/schema/Productos/Producto"
+    get:
+      tags:
+      - Productos
+      summary: Lista de Productos
+      responses:
+        200:
+          description: Lista de Productos
+          content:
+            aplication/json:
+              schema:
+                $ref:"#/components/schema/Productos/getAllProducts" 
+  /api/productos/{id}:
+    get:
+      tags: 
+        - Productos
+      summary: Buscar productos por id
+      parameters:
+        -in: path
+        name: id
+        required: true
+        description: string ID
+        schema:
+          type: string
+      responses:
+        200:
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                msg: "devolviendo el producto con id 64286654bb6234452b33c22f"
+                $ref: "#/components/schema/Productos/Producto"
+    put:
+      tags: 
+        - Productos
+      summary: Modificar producto por id
+      parameters:
+        -in: path
+        name: id
+        required: true
+        description: string ID
+        schema:
+          type: string
+      responses:
+        200:
+          description: Producto modificado correctamente
+          content:
+            application/json:
+              schema:
+                msg: "Producto con id: 64286a09606349aeafbb645f modificado correctamente"
+                $ref: "#/components/schema/Productos/Producto"
+    delete:
+      tags: 
+        - Productos
+      summary: Eliminar producto por id
+      parameters:
+        -in: path
+        name: id
+        required: true
+        description: string ID
+        schema:
+          type: string
+      responses:
+        200:
+          description: Producto eliminado correctamente
+          content:
+            application/json:
+              schema:
+                msg: "Borrando producto con id 64286a55606349aeafbb6462"
+                $ref: "#/components/schema/Productos/Producto"
+  /api/carrito:
+    post:
+      summary: Registro de nuevo carrito en Base de datos
+      tags: 
+        - Carritos
+      parameters:
+        requestBody:
+          content:
+          aplication/json:
+            schema:
+        required: true
+      responses:
+        200:
+          description: Carrito guardado con Éxito.
+          content:
+           aplication/json:
+            schema:
+              msg: "Carrito guardado con Éxito"
+              $ref: "#/components/schema/Carritos/Carrito"
+  /api/carrito/{id}:
+    delete:
+        summary: Elimino un carrito
+        tags: 
+          - Carritos
+        parameters:
+          -in: path
+          name: id
+          required: true
+          description: string ID
+          schema:
+            type: string
+        responses:
+          200:
+            description: Borrando carrito con id 6428a93417536a176c4594bf
+            content:
+             aplication/json:
+              schema:
+                msg: 
+                  type: string
+                  example: Borrando carrito con id 6428a93417536a176c4594bf.
+                  $ref: "#/components/schema/Productos/Producto"
+
+
+  /api/carrito/{id}/productos:
+    get:
+      tags: 
+        - Carritos
+      summary: Buscar carrito por id
+      parameters:
+        -in: path
+        name: id
+        required: true
+        description: string ID
+        schema:
+          type: string
+      responses:
+        200:
+          description: Carrito encontrado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schema/Carritos/getCart"
+  /api/carrito/{id}/confirmar:
+    post:
+      summary: Confirmo un carrito
+      tags: 
+        - Carritos
+      parameters:
+        -in: path
+        name: id
+        required: true
+        description: string ID
+        schema:
+          type: string
+      responses:
+        200:
+          description: Confirmación de compra exitosa.
+          content:
+           aplication/json:
+            schema:
+              msg: 
+                type: string
+                example: Confirmación de compra exitosa.
+              Carrito: 
+                type: string
+                example: 642898ad75ee1b118ff54c9c
+  /api/carrito/{idCart}/productos/{idProd}:
+    post:
+      summary: Agrego producto al carrito
+      tags: 
+        - Carritos
+      parameters:
+        -in: path
+        name: idCart
+        required: true
+        description: string ID
+        schema:
+          type: string
+      requestBody:
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/parameters/productToCart"
+      responses:
+        200:
+          description: Producto Agregado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schema/Productos/Producto"
+
+    delete:
+      summary: Quitar producto del carrito
+      tags: 
+        - Carritos
+      parameters:
+        -in: path
+        name: idProd
+        required: true
+        description: string ID
+        schema:
+          type: string
+      responses:
+        200:
+          description: Producto Quitado
+          content:
+            application/json:
+              schema:
+                msg: "Borrando producto 63f69122965e4feb534c10b9 del carrito 6428a3c79c1a1395591aaa07"
+                $ref: "#/components/schema/Carritos/Carrito"
+  /api/usuarios/login:
+   post:
+      summary: Logueo con un Usuario
+      tags: 
+        - Usuarios 
+      parameters:
+      requestBody:
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/parameters/schemas/User"
+        required: true
+      responses:
+        200:
+          description: Welcome!
+          content:
+           aplication/json:
+            schema:
+              msg: "Welcome"
+              $ref: "#/components/schema/Usuarios/Usuario"
+  /api/usuarios/signup:
+    post:
+      summary: Agrego nuevo Usuario
+      tags: 
+        - Usuarios 
+      parameters:
+      requestBody:
+        content:
+          aplication/json:
+            schema:
+              $ref: "#/components/parameters/schemas/newUser"
+        required: true
+      responses:
+        200:
+          description: signup OK!
+          content:
+           aplication/json:
+            schema:
+              msg: "signup OK"
+             

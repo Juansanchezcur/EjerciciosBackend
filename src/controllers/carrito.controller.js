@@ -5,7 +5,7 @@ import {
   sendWhattsapToHost,
   sendWhatsappToClient,
 } from "../controllers/sms.controller";
-
+import { newOrder } from "../services/orders.js";
 import {
   newCart,
   getCartById,
@@ -236,7 +236,7 @@ export const confirmarCarrito = async (req, res) => {
       const userMessage = `Querido ${req.user.username}:\n \nQuedó confirmado su carrito con los siguientes productos: \n\n${listadoDeproductos}\n\n A la brevedad nos contactaremos con usted`;
 
       sendWhattsapToHost(hostMessage),
-        sendWhatsappToClient(userMessage),
+      sendWhatsappToClient(userMessage),
         //Envío de Email
         (message.text = `Carrito confirmado:\n \n Productos: \n\n${listadoDeproductos}`),
         (message.subject = `Carrito confirmado Usuario: ${req.user.username}`);
@@ -246,6 +246,16 @@ export const confirmarCarrito = async (req, res) => {
     }
     //borrar Carrito
     await deleteCart(id_carrito);
+    
+    //agregar Orden
+    const order= {
+      usuario:req.user.username,
+      productos: carrito[0].productos,
+      estado: "generada"
+    }
+    newOrder(order)
+    
+    
     res.json({
       msg: "Confirmación de compra exitosa",
       Carrito: id_carrito,

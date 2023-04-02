@@ -1,0 +1,666 @@
+{
+	"info": {
+		"_postman_id": "81f9d434-5c45-4655-a091-abd9c462b485",
+		"name": "Proyecto Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "altaburra",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "cambio la burra se hace la otra",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg/250px-Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/9ddf2413-caa2-46e4-9876-5cd55f793179",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"9ddf2413-caa2-46e4-9876-5cd55f793179"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST new product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "altaburraxxxxsasdasdasdasd123",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "cambio la burra se hace la otra",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "123456",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg/250px-Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "altaburra",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "cambio la burra se hace la otra",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg/250px-Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "altaburra",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "cambio la burra se hace la otra",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg/250px-Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/6386c5f5173fdf056db67c745555",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"6386c5f5173fdf056db67c745555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "altaburra",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "cambio la burra se hace la otra",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "200",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg/250px-Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "8",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/6386c5f5173fdf056db67c74",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"6386c5f5173fdf056db67c74"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "POST new carrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "altaburra",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "cambio la burra se hace la otra",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg/250px-Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "altaburra",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "cambio la burra se hace la otra",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg/250px-Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/b9f2be19-e685-4e55-9fdb-ba2e25b4816b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"b9f2be19-e685-4e55-9fdb-ba2e25b4816b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Producto en carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "altaburra",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "cambio la burra se hace la otra",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg/250px-Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/63f5339daa849ca111cbf16c/productos/6386c5f5173fdf056db67c74",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"63f5339daa849ca111cbf16c",
+								"productos",
+								"6386c5f5173fdf056db67c74"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "altaburra",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "cambio la burra se hace la otra",
+									"type": "default"
+								},
+								{
+									"key": "code",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "photo",
+									"value": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg/250px-Donkey_in_Clovelly%2C_North_Devon%2C_England.jpg",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/6993062e-a2e3-4d76-866f-9eb050f70797/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"6993062e-a2e3-4d76-866f-9eb050f70797",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Producto al carrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "quantity",
+									"value": "2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/6420641a0d5d32bd23d82907/productos/63f69122965e4feb534c10b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"6420641a0d5d32bd23d82907",
+								"productos",
+								"63f69122965e4feb534c10b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Confirmar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/63d929eb6964be8677370f4c/confirmar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"63d929eb6964be8677370f4c",
+								"confirmar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

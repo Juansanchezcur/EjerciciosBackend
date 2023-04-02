@@ -9,5 +9,6 @@ const init = async () => {
     console.log(`Servidor Listo escuchando en el puerto ${puerto}`);
   });
 };
+server.on("error", (err) => console.log(err));
 
 init();

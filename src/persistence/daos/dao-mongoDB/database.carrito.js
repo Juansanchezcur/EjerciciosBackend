@@ -28,9 +28,9 @@ export default class MongoDB {
       const nuevoCarrito = {
         productos: [],
       };
-      console.log(nuevoCarrito);
+      ;
       const createdCart = await this.collection.create(nuevoCarrito);
-      console.log(createdCart);
+     ;
       return createdCart;
     } catch (error) {
       console.log(error);

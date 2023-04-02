@@ -1,0 +1,148 @@
+components:
+  schema:
+    Productos:
+      Producto:
+        type: object
+        properties:
+          _id:
+            type: string
+            description: ID del producto
+          name:
+            type: string
+            description: Nombre del producto
+          description:
+            type: string
+            description: Descripción del producto
+          code:
+            type: number
+            description: Código del producto
+          price:
+            type: number
+            description: Precio del producto
+          photo:
+            type: string
+            description: Imagen del producto
+          stock:
+            type: number
+            description: Cantidades en stock del producto
+          createdAt:
+            type: date
+            description: Fecha de publicación del producto
+          updatedAt:
+            type: date
+            description: Fecha de actualización del producto
+          __v:
+            type: number
+            description: versión del producto
+        example:
+          msg: "mensaje"
+          producto: 
+            _id: 63f69122965e4feb534c10b9
+            name: Auto
+            description: Un auto rojo
+            code: 123
+            price: 5000
+            photo: https://img.freepik.com/fotos-premium/ilustracion-auto-rojo_53876-7896.jpg
+            stock: 5    
+      getaAllProducts:
+        type: array
+        items:
+          properties:
+            _id:
+              type: string
+              example: 63f69122965e4feb534c10b9
+            name:
+              type: string
+              example: Auto
+            description:
+              type: string
+              example: Un auto rojo
+            code:
+              type: number
+              example: 123
+            price:
+              type: number
+              example: 5000
+            photo:
+              type: string
+              example: https://img.freepik.com/fotos-premium/ilustracion-auto-rojo_53876-7896.jpg
+            stock:
+              type: number
+              example: 5      
+    Carritos:
+      Carrito:
+        type: object
+        properties:
+          msj:
+             type: string
+          Carrito:
+            _id:
+              type: string
+              description: ID del carrito
+            productos:
+              type: object
+              items:
+                _id:
+                  type: string
+                  example: 63f69122965e4feb534c10b9
+                description:
+                  type: string
+                  example: Un auto rojo
+                price:
+                  type: number
+                  example: 5000
+                photo:
+                  type: string
+                  example: https://img.freepik.com/fotos-premium/ilustracion-auto-rojo_53876-7896.jpg
+                quantity:
+                  type: number
+                  example: 5
+      getCart:
+        productos:
+          type: array
+          items:
+            properties:
+              _id:
+                type: string
+                example: 63f69122965e4feb534c10b9
+              quantity:
+                type: number
+                example: 2
+              description:
+                type: string
+                example: Un auto rojo
+              price:
+                type: number
+                example: 5000
+              photo:
+                type: string
+                example: https://img.freepik.com/fotos-premium/ilustracion-auto-rojo_53876-7896.jpg
+    Usuarios:
+      Usuario:
+        type: object
+        properties:
+          _id:
+            type: string
+            description: ID del usuario
+          username:
+            type: string
+            description: Usuario de Ingreso
+          description:
+            type: string
+            password: Contraseña de ingreso
+          admin:
+            type: boolean
+            description: Si el usuario es administrador o no
+          telephone:
+            type: number
+            description: Teléfono del usuario
+          __v:
+            type: number
+            description: versión del usuario
+        example:
+          _id: 6428c1b79c1d4ff5a39936e8
+          username: Carlitosss,
+          password: $2a$10$314ZRPHRcPvC5JxBA08mVO7harBBHaMCQdWAXoI8CqW5PJLapSQ.m,
+          admin: false,
+          telephone: 123123123,
+          __v: 0

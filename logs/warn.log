@@ -863,3 +863,32 @@
     at F:\Escritorio\CoderHouse\Backend\Ejecicio10Process\node_modules\express\lib\router\index.js:284:15
     at Function.process_params (F:\Escritorio\CoderHouse\Backend\Ejecicio10Process\node_modules\express\lib\router\index.js:346:12)
     at next (F:\Escritorio\CoderHouse\Backend\Ejecicio10Process\node_modules\express\lib\router\index.js:280:10)
+[31merror[39m | Apr-01-2023 14:13:52 | Hubo un error, por favor verifica los datos
+[31merror[39m | Apr-01-2023 17:48:09 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading '_id')
+[31merror[39m | Apr-01-2023 17:49:01 | Hubo un error, por favor verifica los datosTypeError: Cannot read properties of undefined (reading '_id')
+[31merror[39m | Apr-01-2023 17:55:50 | Por favor logueate antes de confirmar el pedido
+[31merror[39m | Apr-01-2023 18:00:43 | Por favor logueate antes de confirmar el pedido
+[31merror[39m | Apr-01-2023 18:00:43 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of null (reading '_id')
+[33mwarn[39m | Apr-01-2023 19:14:48 | Error: Método o ruta no válidos: 
+ Método= POST, Ruta= /signup}
+[31merror[39m | Apr-01-2023 19:20:53 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-01-2023 20:39:40 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-01-2023 20:43:52 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-01-2023 21:30:58 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-01-2023 21:56:55 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-02-2023 09:05:34 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'productos')
+[31merror[39m | Apr-02-2023 09:08:15 | Hubo un error, por favor verifica los datosError: Authenticate
+[31merror[39m | Apr-02-2023 09:08:47 | Hubo un error, por favor verifica los datosError: Authenticate
+[31merror[39m | Apr-02-2023 10:22:34 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'productos')
+[31merror[39m | Apr-02-2023 10:22:55 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-02-2023 10:23:04 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'productos')
+[31merror[39m | Apr-02-2023 10:23:23 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-02-2023 10:25:22 | Hubo un error, por favor verifica los datos TypeError: Cannot read properties of undefined (reading 'productos')
+[31merror[39m | Apr-02-2023 10:25:36 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-02-2023 10:26:27 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-02-2023 10:27:12 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-02-2023 10:32:51 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-02-2023 10:36:39 | Invalid login: 535 Authentication failed
+[31merror[39m | Apr-02-2023 10:41:09 | Hubo un error, por favor verifica los datosError: Twilio could not find a Channel with the specified From address
+[31merror[39m | Apr-02-2023 10:43:01 | Hubo un error, por favor verifica los datosError: Invalid From and To pair. From and To should be of the same channel
+[31merror[39m | Apr-02-2023 10:48:05 | Hubo un error, por favor verifica los datosError: Twilio could not find a Channel with the specified From address

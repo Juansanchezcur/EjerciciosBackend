@@ -174,37 +174,36 @@ var actualizarProducto = /*#__PURE__*/function () {
             });
           case 9:
             productoActualizado = _context4.sent;
-            console.log(productoActualizado);
             if (!productoActualizado) {
-              _context4.next = 15;
+              _context4.next = 14;
               break;
             }
             res.json({
               msg: "Producto con id: ".concat(id, " modificado correctamente"),
               producto: productoActualizado
             });
-            _context4.next = 17;
+            _context4.next = 16;
             break;
-          case 15:
+          case 14:
             logger.error("error, producto no encontrado");
             return _context4.abrupt("return", res.status(404).json({
               msg: "error, producto no encontrado"
             }));
-          case 17:
-            _context4.next = 22;
+          case 16:
+            _context4.next = 21;
             break;
-          case 19:
-            _context4.prev = 19;
+          case 18:
+            _context4.prev = 18;
             _context4.t0 = _context4["catch"](0);
             return _context4.abrupt("return", res.status(404).json({
               msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 22:
+          case 21:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[0, 19]]);
+    }, _callee4, null, [[0, 18]]);
   }));
   return function actualizarProducto(_x7, _x8) {
     return _ref4.apply(this, arguments);
@@ -224,36 +223,35 @@ var eliminarProducto = /*#__PURE__*/function () {
             return (0, _products.deleteProduct)(id);
           case 4:
             productoBorrado = _context5.sent;
-            console.log(productoBorrado);
             if (!productoBorrado) {
-              _context5.next = 10;
+              _context5.next = 9;
               break;
             }
             res.json({
               msg: "Borrando producto con id ".concat(id),
               producto: productoBorrado
             });
-            _context5.next = 11;
+            _context5.next = 10;
             break;
-          case 10:
+          case 9:
             return _context5.abrupt("return", res.status(404).json({
               msg: "error, producto no encontrado"
             }));
-          case 11:
-            _context5.next = 16;
+          case 10:
+            _context5.next = 15;
             break;
-          case 13:
-            _context5.prev = 13;
+          case 12:
+            _context5.prev = 12;
             _context5.t0 = _context5["catch"](0);
             return _context5.abrupt("return", res.status(404).json({
               msg: "Hubo un error, por favor verifica los datos"
             }));
-          case 16:
+          case 15:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5, null, [[0, 13]]);
+    }, _callee5, null, [[0, 12]]);
   }));
   return function eliminarProducto(_x9, _x10) {
     return _ref5.apply(this, arguments);
